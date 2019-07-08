@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTimePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="853.0" prefWidth="1746.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.abms.se.abms_se_pro.controller.WorkersAttendenceController">
+   <children>
+      <Label alignment="CENTER" layoutX="165.0" layoutY="24.0" prefHeight="62.0" prefWidth="1001.0" text="Manage Workers Attendence">
+         <font>
+            <Font name="Arial Black" size="42.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="img_Back" fitHeight="88.0" fitWidth="92.0" layoutX="24.0" layoutY="11.0" onMouseClicked="#img_Back_OnMosueClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/back.png" />
+         </image>
+      </ImageView>
+      <JFXTextField fx:id="txtWorkerId" labelFloat="true" layoutX="33.0" layoutY="325.0" prefHeight="31.0" prefWidth="416.0" promptText="Worker Id" />
+      <JFXTextField fx:id="txtNic" labelFloat="true" layoutX="37.0" layoutY="380.0" prefHeight="31.0" prefWidth="416.0" promptText="Nic" />
+      <JFXTextField fx:id="txtWorkerName" labelFloat="true" layoutX="37.0" layoutY="434.0" prefHeight="31.0" prefWidth="416.0" promptText="Worker Name" />
+      <JFXTextField fx:id="txtWorkerSite" labelFloat="true" layoutX="37.0" layoutY="490.0" prefHeight="31.0" prefWidth="416.0" promptText="Worker Site" />
+      <JFXDatePicker fx:id="txtAttendenceDate" layoutX="37.0" layoutY="543.0" prefHeight="31.0" prefWidth="416.0" promptText="Attendence Date" />
+      <JFXTimePicker fx:id="txtInTime" layoutX="37.0" layoutY="596.0" prefHeight="31.0" prefWidth="416.0" promptText="In Time" />
+      <JFXTimePicker fx:id="txtOutTime" layoutX="40.0" layoutY="642.0" prefHeight="31.0" prefWidth="416.0" promptText="Out Time" />
+      <JFXTextField fx:id="txtAdvancePayment" labelFloat="true" layoutX="40.0" layoutY="696.0" prefHeight="31.0" prefWidth="416.0" promptText="Advance Payment" />
+      <JFXComboBox fx:id="cmbSiteNumber" layoutX="37.0" layoutY="176.0" onAction="#cmbSiteNumber_OnAction" prefHeight="31.0" prefWidth="409.0" promptText="Site Number" />
+      <JFXTextField fx:id="txtSiteName" labelFloat="true" layoutX="34.0" layoutY="226.0" prefHeight="31.0" prefWidth="416.0" promptText="Site Name" />
+      <JFXTextField fx:id="txtSupervisor" labelFloat="true" layoutX="35.0" layoutY="279.0" prefHeight="31.0" prefWidth="416.0" promptText="Supervisor" />
+      <JFXButton fx:id="btnAdd" layoutX="132.0" layoutY="769.0" onAction="#btnAdd_OnAction" prefHeight="36.0" prefWidth="110.0" style="-fx-background-color: blue;" text="Add" textFill="WHITE">
+         <font>
+            <Font name="Arial Narrow Bold" size="19.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnRemove" layoutX="249.0" layoutY="769.0" onAction="#btnRemove_onAction" prefHeight="36.0" prefWidth="110.0" style="-fx-background-color: brown;" text="Remove" textFill="WHITE">
+         <font>
+            <Font name="Arial Narrow Bold" size="19.0" />
+         </font>
+      </JFXButton>
+      <TableView fx:id="tblAttendence" layoutX="520.0" layoutY="185.0" prefHeight="606.0" prefWidth="1212.0">
+        <columns>
+          <TableColumn prefWidth="104.0" text="Site Number" />
+          <TableColumn prefWidth="87.0" text="Site Name" />
+            <TableColumn prefWidth="88.0" text="Supervisor" />
+            <TableColumn prefWidth="88.0" text="Worker Id" />
+            <TableColumn prefWidth="95.0" text="Worker Nic" />
+            <TableColumn prefWidth="117.0" text="Worker Name" />
+            <TableColumn minWidth="1.0" prefWidth="1.0" text="C2" />
+            <TableColumn prefWidth="89.0" text="Site Name" />
+            <TableColumn prefWidth="142.0" text="Attendence Date" />
+            <TableColumn prefWidth="123.0" text="In Time" />
+            <TableColumn prefWidth="102.0" text="Out Time" />
+            <TableColumn prefWidth="175.0" text="Advance Payment" />
+        </columns>
+      </TableView>
+      <JFXButton fx:id="btnInSert" layoutX="518.0" layoutY="801.0" onAction="#btnInSert_onAction" prefHeight="45.0" prefWidth="138.0" style="-fx-background-color: green;" text="Insert" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="15.0" />
+         </font>
+      </JFXButton>
+      <ImageView fx:id="img_SuperVisor" fitHeight="131.0" fitWidth="138.0" layoutX="153.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/attendence.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

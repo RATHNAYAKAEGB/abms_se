@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="950.0" prefWidth="1612.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.abms.se.abms_se_pro.controller.WorkersController">
+   <children>
+      <JFXTextField fx:id="txtWorkerID" labelFloat="true" layoutX="39.0" layoutY="119.0" prefHeight="31.0" prefWidth="345.0" promptText="Worker Number" />
+      <JFXTextField fx:id="txtNice" layoutX="39.0" layoutY="172.0" prefHeight="31.0" prefWidth="345.0" promptText="Nic" />
+      <JFXTextField fx:id="txtFullName" layoutX="39.0" layoutY="233.0" prefHeight="31.0" prefWidth="345.0" promptText="Full Name" />
+      <JFXTextField fx:id="txtAddress" layoutX="39.0" layoutY="286.0" prefHeight="31.0" prefWidth="345.0" promptText="Address" />
+      <JFXTextField fx:id="txtPhone" layoutX="39.0" layoutY="342.0" prefHeight="31.0" prefWidth="345.0" promptText="Phone" />
+      <Line endX="100.0" layoutX="151.0" layoutY="633.0" startX="-100.0" />
+      <Line endX="-101.5" endY="162.5" layoutX="146.0" layoutY="636.0" startX="-100.0" />
+      <JFXComboBox fx:id="cmbWorkerCategory" labelFloat="true" layoutX="39.0" layoutY="401.0" onAction="#cmbWorkerCategory_OnAction" prefHeight="31.0" prefWidth="345.0" promptText="Employee Category Number" />
+      <JFXTextField fx:id="txtWcatName" layoutX="39.0" layoutY="457.0" prefHeight="31.0" prefWidth="345.0" promptText="Worker Category" />
+      <Line endX="90.5" endY="-9.5" layoutX="161.0" layoutY="643.0" startX="89.5" startY="153.5" />
+      <Line endX="-111.0" endY="153.0" layoutX="158.0" layoutY="644.0" startX="92.0" startY="153.0" />
+      <JFXButton fx:id="btnBrows" layoutX="293.0" layoutY="701.0" onAction="#btnBrows_OnAcion" style="-fx-background-color: brown;" text="Brows" textFill="#f8f8f8">
+         <font>
+            <Font name="Bauhaus 93" size="14.0" />
+         </font>
+      </JFXButton>
+      <ImageView fx:id="img_PP" fitHeight="164.0" fitWidth="204.0" layoutX="47.0" layoutY="632.0" pickOnBounds="true" preserveRatio="true" />
+      <JFXButton fx:id="btnSave" layoutX="38.0" layoutY="844.0" onAction="#btnSave_OnAction" prefHeight="31.0" prefWidth="92.0" style="-fx-background-color: green;" text="Save" textFill="#f7f7f7">
+         <font>
+            <Font name="Arial" size="19.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnUpdate" layoutX="147.0" layoutY="845.0" onAction="#btnUpdate_OnAction" prefHeight="31.0" prefWidth="92.0" style="-fx-background-color: brown;" text="Update" textFill="#f7f7f7">
+         <font>
+            <Font name="Arial" size="19.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnDelete" layoutX="252.0" layoutY="844.0" onAction="#btnDelete_OnAction" prefHeight="31.0" prefWidth="92.0" style="-fx-background-color: red;" text="Delete" textFill="#f7f7f7">
+         <font>
+            <Font name="Arial" size="19.0" />
+         </font>
+      </JFXButton>
+      <Label alignment="CENTER" layoutX="274.0" layoutY="23.0" prefHeight="50.0" prefWidth="1108.0" text="Manage Site Workers">
+         <font>
+            <Font name="Arial Black" size="42.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="cmbSiteName" labelFloat="true" layoutX="39.0" layoutY="512.0" onAction="#cmbSiteName_OnAction" prefHeight="31.0" prefWidth="345.0" promptText="Site Number" />
+      <JFXTextField fx:id="txtSiteName" layoutX="39.0" layoutY="568.0" prefHeight="31.0" prefWidth="345.0" promptText="Site Name" />
+      <TableView fx:id="tblWorkers" layoutX="451.0" layoutY="181.0" prefHeight="755.0" prefWidth="1147.0">
+        <columns>
+          <TableColumn prefWidth="115.0" text="Worker No " />
+          <TableColumn prefWidth="141.0" text="Nic" />
+            <TableColumn prefWidth="154.0" text="Name" />
+            <TableColumn prefWidth="234.0" text="Address" />
+            <TableColumn prefWidth="131.0" text="Phone" />
+            <TableColumn prefWidth="202.0" text="Emp Category" />
+            <TableColumn prefWidth="169.0" text="Site Name" />
+        </columns>
+      </TableView>
+      <ImageView fitHeight="103.0" fitWidth="137.0" layoutX="270.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/worker.png" />
+         </image>
+      </ImageView>
+      <JFXTextField fx:id="txtSearch" layoutX="451.0" layoutY="135.0" onKeyPressed="#txtSearch_OnKeyPress" prefHeight="31.0" prefWidth="345.0" promptText="ENTER NIC OR EMP ID TO SEARCH" />
+      <ImageView fx:id="img_Back" fitHeight="88.0" fitWidth="92.0" layoutX="14.0" layoutY="10.0" onMouseClicked="#img_Back_OnMosueClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/back.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

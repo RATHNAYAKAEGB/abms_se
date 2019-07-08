@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="979.0" prefWidth="1727.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.abms.se.abms_se_pro.controller.MainController">
+   <children>
+      <ImageView fitHeight="288.0" fitWidth="634.0" layoutX="534.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/abmslogo.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="img_ConstructionSite" fitHeight="190.0" fitWidth="202.0" layoutX="73.0" layoutY="47.0" onMouseClicked="#img_ConstructionSite_OnClicled" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/site_C.jpg" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="41.0" layoutY="209.0" prefHeight="44.0" prefWidth="267.0" text="Construction Site">
+         <font>
+            <Font name="Algerian" size="22.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="img_WorkerType" fitHeight="190.0" fitWidth="202.0" layoutX="73.0" layoutY="270.0" onMouseClicked="#img_WorkerType_OnClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/empGroup.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="41.0" layoutY="455.0" prefHeight="44.0" prefWidth="267.0" text="Workers Types">
+         <font>
+            <Font name="Algerian" size="22.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="img_Workers" fitHeight="190.0" fitWidth="202.0" layoutX="73.0" layoutY="515.0" onMouseClicked="#img_Workers_OnClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/worker.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="41.0" layoutY="699.0" prefHeight="44.0" prefWidth="267.0" text="Manage Workers">
+         <font>
+            <Font name="Algerian" size="22.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="img_ManageSalary" fitHeight="190.0" fitWidth="202.0" layoutX="330.0" layoutY="260.0" onMouseClicked="#img_ManageSalary_OnClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/salary.jpg" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="302.0" layoutY="450.0" prefHeight="44.0" prefWidth="267.0" text="Manage Salary">
+         <font>
+            <Font name="Algerian" size="22.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="img_Attendence" fitHeight="173.0" fitWidth="190.0" layoutX="81.0" layoutY="750.0" onMouseClicked="#img_Attendence_MouseClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/attendence.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="929.0" prefHeight="44.0" prefWidth="307.0" text="Workers Attendence">
+         <font>
+            <Font name="Algerian" size="22.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="img_Payment_Advance" fitHeight="173.0" fitWidth="190.0" layoutX="356.0" layoutY="511.0" onMouseClicked="#img_Payment_Advance_OnClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/advanced.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="295.0" layoutY="690.0" prefHeight="44.0" prefWidth="341.0" text="Payment Advances For Site">
+         <font>
+            <Font name="Algerian" size="22.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="173.0" fitWidth="173.0" layoutX="361.0" layoutY="748.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/payement.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="295.0" layoutY="931.0" prefHeight="44.0" prefWidth="307.0" text="Payments">
+         <font>
+            <Font name="Algerian" size="22.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="img_Back" fitHeight="88.0" fitWidth="92.0" layoutX="1625.0" layoutY="14.0" onMouseClicked="#img_Back_OnMosueClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/back.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

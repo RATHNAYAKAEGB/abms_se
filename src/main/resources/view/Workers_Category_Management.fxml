@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="689.0" prefWidth="1169.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.abms.se.abms_se_pro.controller.Workers_Category_ManagementController">
+   <children>
+      <Label alignment="CENTER" layoutX="299.0" layoutY="22.0" prefHeight="62.0" prefWidth="881.0" text="Worker Category Management">
+         <font>
+            <Font name="Arial Black" size="42.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtCatID" editable="false" labelFloat="true" layoutX="34.0" layoutY="304.0" prefHeight="31.0" prefWidth="371.0" promptText=" Category ID" />
+      <JFXTextField fx:id="txtName" labelFloat="true" layoutX="34.0" layoutY="366.0" prefHeight="31.0" prefWidth="371.0" promptText="Name" />
+      <JFXTextField fx:id="txtDescription" labelFloat="true" layoutX="34.0" layoutY="484.0" prefHeight="31.0" prefWidth="378.0" promptText="Description" />
+      <TableView fx:id="tblWorkerCategory" layoutX="459.0" layoutY="145.0" prefHeight="518.0" prefWidth="744.0">
+        <columns>
+          <TableColumn prefWidth="144.0" text="Category ID" />
+          <TableColumn prefWidth="215.0" text="Category Name" />
+            <TableColumn prefWidth="149.0" text="Salary Type" />
+            <TableColumn prefWidth="142.0" text="Description" />
+            <TableColumn prefWidth="93.0" text="Is Active" />
+        </columns>
+      </TableView>
+      <JFXComboBox fx:id="cmbSalaryType" labelFloat="true" layoutX="34.0" layoutY="421.0" prefHeight="31.0" prefWidth="378.0" promptText="Salary Type" />
+      <JFXButton fx:id="btnSave" layoutX="106.0" layoutY="613.0" onAction="#btnSave_OnAction" prefHeight="31.0" prefWidth="92.0" style="-fx-background-color: green;" text="Save" textFill="#f7f7f7">
+         <font>
+            <Font name="Arial" size="19.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnUpdate" layoutX="215.0" layoutY="614.0" onAction="#btnUpdate_OnAction" prefHeight="31.0" prefWidth="92.0" style="-fx-background-color: brown;" text="Update" textFill="#f7f7f7">
+         <font>
+            <Font name="Arial" size="19.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnDelete" layoutX="320.0" layoutY="613.0" onAction="#btnDelete_OnAction" prefHeight="31.0" prefWidth="92.0" style="-fx-background-color: red;" text="Delete" textFill="#f7f7f7">
+         <font>
+            <Font name="Arial" size="19.0" />
+         </font>
+      </JFXButton>
+      <Label alignment="CENTER" layoutX="134.0" layoutY="-190.0" prefHeight="50.0" prefWidth="1108.0" text="Construction Site Management">
+         <font>
+            <Font name="Arial Black" size="42.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="245.0" fitWidth="218.0" layoutX="120.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/empGroup.png" />
+         </image>
+      </ImageView>
+      <JFXRadioButton fx:id="rbIsActive" layoutX="34.0" layoutY="544.0" text=" Is Active" />
+      <ImageView fx:id="img_Back" fitHeight="88.0" fitWidth="92.0" layoutX="14.0" layoutY="9.0" onMouseClicked="#img_Back_OnMosueClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/back.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
