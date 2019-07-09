@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,23 +19,39 @@ import javafx.util.Duration;
 import java.io.IOException;
 
 public class SiteMonthlyAdvanceContorller {
-    public ImageView img_Back;
-    public ImageView img_SuperVisor;
-    public JFXTextField txtSiteName;
-    public JFXComboBox cmbSiteId;
-    public JFXTextField txtSupervisor;
-    public JFXTextField txtAmount;
-    public JFXTextField txtDescription;
-    public JFXButton btnSave;
-    public JFXButton btnUpdate;
-    public JFXButton btnDelete;
-    public JFXDatePicker txtIssueDate;
-    public JFXTextField txtApId;
-    public JFXComboBox cmbPaymentType;
-    public JFXTextField txtcheckNumber;
-    public TableView tblAdvancePayment;
+    @FXML
+    private ImageView img_Back;
+    @FXML
+    private ImageView img_SuperVisor;
+    @FXML
+    private JFXTextField txtSiteName;
+    @FXML
+    private JFXComboBox cmbSiteId;
+    @FXML
+    private JFXTextField txtSupervisor;
+    @FXML
+    private JFXTextField txtAmount;
+    @FXML
+    private JFXTextField txtDescription;
+    @FXML
+    private JFXButton btnSave;
+    @FXML
+    private JFXButton btnUpdate;
+    @FXML
+    private JFXButton btnDelete;
+    @FXML
+    private JFXDatePicker txtIssueDate;
+    @FXML
+    private JFXTextField txtApId;
+    @FXML
+    private JFXComboBox cmbPaymentType;
+    @FXML
+    private JFXTextField txtcheckNumber;
+    @FXML
+    private TableView tblAdvancePayment;
 
-    public void img_Back_OnMosueClicked(MouseEvent mouseEvent) throws IOException {
+    @FXML
+    private void img_Back_OnMosueClicked(MouseEvent mouseEvent) throws IOException {
         Parent root = FXMLLoader.load(this.getClass().getResource("/view/Main_Page.fxml"));
         Scene subScene = new Scene(root);
         Stage primaryStage = (Stage) btnDelete.getScene().getWindow();
@@ -46,21 +63,27 @@ public class SiteMonthlyAdvanceContorller {
         tt.play();
     }
 
-    public void cmbSiteId_OnAction(ActionEvent actionEvent) {
+    @FXML
+    private void cmbSiteId_OnAction(ActionEvent actionEvent) {
     }
 
-    public void btnSave_OnAction(ActionEvent actionEvent) {
+    @FXML
+    private void btnSave_OnAction(ActionEvent actionEvent) {
     }
 
-    public void btnUpdate_OnAction(ActionEvent actionEvent) {
+    @FXML
+    private void btnUpdate_OnAction(ActionEvent actionEvent) {
     }
 
-    public void btnDelete_OnAction(ActionEvent actionEvent) {
+    @FXML
+    private void btnDelete_OnAction(ActionEvent actionEvent) {
     }
 
-    public void cmbPaymentType_OnAction(ActionEvent actionEvent) {
+    @FXML
+    private void cmbPaymentType_OnAction(ActionEvent actionEvent) {
     }
 
-    public void CheckNumber(ActionEvent actionEvent) {
+    @FXML
+    private void CheckNumber(ActionEvent actionEvent) {
     }
 }
