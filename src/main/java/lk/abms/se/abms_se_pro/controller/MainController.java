@@ -23,6 +23,10 @@ public class MainController {
 
 
     @FXML
+    private ImageView img_income;
+    @FXML
+    private ImageView img_Expenditure;
+    @FXML
     private ImageView img_ManageSalary;
     @FXML
     private ImageView img_Payment_Advance;
@@ -124,5 +128,24 @@ public class MainController {
         tt.setToX(0);
         tt.play();
 
+    }
+
+    @FXML
+    private void img_income_OnClicked(MouseEvent mouseEvent) throws IOException {
+
+        Parent root = FXMLLoader.load(this.getClass().getResource("/view/income.fxml"));
+        Scene subScene = new Scene(root);
+        Stage primaryStage = (Stage) img_ConstructionSite.getScene().getWindow();
+        primaryStage.setScene(subScene);
+        primaryStage.centerOnScreen();
+        TranslateTransition tt = new TranslateTransition(Duration.millis(350), subScene.getRoot());
+        tt.setFromX(-subScene.getWidth());
+        tt.setToX(0);
+        tt.play();
+
+    }
+
+    @FXML
+    private void img_Expenditure_OnClicked(MouseEvent mouseEvent) {
     }
 }

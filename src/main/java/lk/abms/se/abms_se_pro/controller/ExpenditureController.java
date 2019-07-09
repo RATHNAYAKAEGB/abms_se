@@ -10,48 +10,48 @@ import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-public class IncomeController {
-    @FXML
-    private JFXTextField txtIncomeId;
+public class ExpenditureController {
     @FXML
     private ImageView img_Back;
     @FXML
-    private JFXTextField txtCheckNumber;
+    private ImageView img_Workers;
     @FXML
-    private JFXDatePicker txtDate;
+    private JFXTextField txtExpenditureId;
     @FXML
-    private JFXComboBox cmbIncomeType;
-    @FXML
-    private JFXComboBox txtRecieveType;
-    @FXML
-    private JFXTextField txtDescription;
-    @FXML
-    private JFXComboBox cmbSite;
+    private JFXComboBox txtExpenditureType;
     @FXML
     private JFXTextField txtSiteName;
     @FXML
-    private JFXTextField txtAmount;
+    private JFXTextField txtDescription;
     @FXML
-    private TableView tblIncomes;
+    private JFXComboBox cmbSiteId;
+    @FXML
+    private TableView tblExpenditure;
+    @FXML
+    private JFXComboBox cmbRecievedType;
+    @FXML
+    private JFXTextField txtCheckNumber;
+    @FXML
+    private JFXTextField txtAmount;
     @FXML
     private JFXButton btnSave;
     @FXML
     private JFXButton btnUpdate;
     @FXML
-    private ImageView img_Workers;
-    @FXML
     private JFXButton btnDelete;
+    @FXML
+    private JFXDatePicker txtDate;
 
     @FXML
     private void img_Back_OnMosueClicked(MouseEvent mouseEvent) {
     }
 
     @FXML
-    private void cmbIncomeType_OnAction(ActionEvent actionEvent) {
+    private void txtExpenditureType_OnAction(ActionEvent actionEvent) {
     }
 
     @FXML
-    private void cmbSite_OnAction(ActionEvent actionEvent) {
+    private void cmbSiteId_Onaction(ActionEvent actionEvent) {
     }
 
     @FXML

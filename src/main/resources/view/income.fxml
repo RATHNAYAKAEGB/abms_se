@@ -1,14 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="lk.abms.se.abms_se_pro.controller.IncomeController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="911.0" prefWidth="1553.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.abms.se.abms_se_pro.controller.IncomeController">
+   <children>
+      <JFXTextField fx:id="txtIncomeId" labelFloat="true" layoutX="37.0" layoutY="405.0" prefHeight="31.0" prefWidth="369.0" promptText="Income Id" />
+      <ImageView fx:id="img_Back" fitHeight="88.0" fitWidth="92.0" layoutX="25.0" layoutY="20.0" onMouseClicked="#img_Back_OnMosueClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/back.png" />
+         </image>
+      </ImageView>
+      <JFXTextField fx:id="txtCheckNumber" labelFloat="true" layoutX="35.0" layoutY="592.0" prefHeight="31.0" prefWidth="363.0" promptText="Check Number" />
+      <JFXDatePicker fx:id="txtDate" layoutX="37.0" layoutY="467.0" prefHeight="31.0" prefWidth="369.0" promptText="Recieved Date" />
+      <JFXComboBox fx:id="cmbIncomeType" labelFloat="true" layoutX="39.0" layoutY="228.0" onAction="#cmbIncomeType_OnAction" prefHeight="31.0" prefWidth="363.0" promptText="Income Type" />
+      <JFXComboBox fx:id="txtRecieveType" labelFloat="true" layoutX="35.0" layoutY="531.0" prefHeight="31.0" prefWidth="363.0" promptText="Recievd Type" />
+      <JFXTextField fx:id="txtDescription" labelFloat="true" layoutX="33.0" layoutY="652.0" prefHeight="31.0" prefWidth="369.0" promptText="Description" />
+      <JFXComboBox fx:id="cmbSite" labelFloat="true" layoutX="38.0" layoutY="284.0" onAction="#cmbSite_OnAction" prefHeight="31.0" prefWidth="363.0" promptText="Select Site" />
+      <JFXTextField fx:id="txtSiteName" labelFloat="true" layoutX="35.0" layoutY="345.0" prefHeight="31.0" prefWidth="369.0" promptText="Site Name" />
+      <JFXTextField fx:id="txtAmount" labelFloat="true" layoutX="32.0" layoutY="712.0" prefHeight="31.0" prefWidth="369.0" promptText="Amount (Rs.)" />
+      <TableView fx:id="tblIncomes" layoutX="450.0" layoutY="73.0" prefHeight="799.0" prefWidth="1089.0">
+        <columns>
+          <TableColumn prefWidth="115.0" text="Income Type" />
+          <TableColumn prefWidth="72.0" text="Site" />
+            <TableColumn prefWidth="107.0" text="Site Name" />
+            <TableColumn prefWidth="99.0" text="Income Id" />
+            <TableColumn minWidth="0.0" prefWidth="75.0" text="Date" />
+            <TableColumn prefWidth="138.0" text="Recieved Type" />
+            <TableColumn prefWidth="140.0" text="Check Number" />
+            <TableColumn prefWidth="161.0" text="Description" />
+            <TableColumn prefWidth="181.0" text="Amount" />
+        </columns>
+      </TableView>
+      <ImageView fx:id="img_Workers" fitHeight="152.0" fitWidth="190.0" layoutX="166.0" layoutY="38.0" onMouseClicked="#img_Workers_OnClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/income.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btnSave" layoutX="65.0" layoutY="791.0" onAction="#btnSave_OnAction" prefHeight="31.0" prefWidth="92.0" style="-fx-background-color: green;" text="Save" textFill="#f7f7f7">
+         <font>
+            <Font name="Arial" size="19.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnUpdate" layoutX="174.0" layoutY="792.0" onAction="#btnUpdate_OnAction" prefHeight="31.0" prefWidth="92.0" style="-fx-background-color: brown;" text="Update" textFill="#f7f7f7">
+         <font>
+            <Font name="Arial" size="19.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnDelete" layoutX="279.0" layoutY="791.0" onAction="#btnDelete_OnAction" prefHeight="31.0" prefWidth="92.0" style="-fx-background-color: red;" text="Delete" textFill="#f7f7f7">
+         <font>
+            <Font name="Arial" size="19.0" />
+         </font>
+      </JFXButton>
+   </children>
 </AnchorPane>
