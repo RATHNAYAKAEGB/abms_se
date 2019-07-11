@@ -6,31 +6,37 @@ import lk.abms.se.abms_se_pro.entity.WorkerCategory;
 import lk.abms.se.abms_se_pro.model.WorkerCategoryDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Component
+@Transactional
 public class WorkerCategoryManagementService {
     @Autowired
-    EmployeeCatagoryRepository employeeCatagoryRepository;
+    private EmployeeCatagoryRepository employeeCatagoryRepository;
 
-
+    public WorkerCategoryManagementService() {
+        System.out.println("------------------WorkerCategoryManagementService-----------------------");
+    }
 
     public void CreateNewEmpCategory(WorkerCategoryDTO category) throws Exception{
         employeeCatagoryRepository.save(ConverterDTO_ENTITY.getEntity(category));
     }
 
-    public void UpdateEmpCategory(WorkerCategory category) throws Exception{
-        WorkerCategory cat = employeeCatagoryRepository.findByEmpCatId(category.getEmpCatId());
-        cat.setCreateBy(category.getCreateBy());
-        cat.setName(category.getName());
+    public void UpdateEmpCategory(WorkerCategoryDTO category) throws Exception{
+        WorkerCategory cat = employeeCatagoryRepository.findByCatId(category.getCat_Id());
+        cat.setCreatedBy(category.getCreatedBy());
+        cat.setCat_Name(category.getCat_Name());
+        cat.setACtive(category.isACtive());
+        cat.setSalaryType(category.getSalaryType());
     }
-    public List<WorkerCategory> findAllEmpCategory() throws Exception{
-        return employeeCatagoryRepository.findAll();
+    public List<WorkerCategoryDTO> findAllEmpCategory() throws Exception{
+        return ConverterDTO_ENTITY.getDTOList( employeeCatagoryRepository.findAll());
     }
 
     public void deleteCategory(String catId) throws Exception{
-        employeeCatagoryRepository.delete(employeeCatagoryRepository.findByEmpCatId(catId));
+        employeeCatagoryRepository.delete(employeeCatagoryRepository.findByCatId(catId.trim()));
     }
 
 }

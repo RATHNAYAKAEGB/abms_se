@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EmployeeCatagoryRepository extends JpaRepository<WorkerCategory,String> {
 
-    WorkerCategory findByEmpCatId(String empCatId);
+    WorkerCategory findByCatId(String catId);
 }

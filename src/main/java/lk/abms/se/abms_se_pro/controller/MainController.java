@@ -1,7 +1,6 @@
 package lk.abms.se.abms_se_pro.controller;
 
 import javafx.animation.TranslateTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,7 +11,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import lk.abms.se.abms_se_pro.bussiness.WorkerCategoryManagementService;
-import lk.abms.se.abms_se_pro.model.WorkerCategoryDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

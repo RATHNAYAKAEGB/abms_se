@@ -15,7 +15,7 @@ import static javafx.application.Application.launch;
 @SpringBootApplication
 public class AbmsSeProApplication extends Application {
 
-	private ConfigurableApplicationContext ctx;
+	public static ConfigurableApplicationContext ctx;
 	private Parent  root;
 
 	public static void main(String[] args) {
