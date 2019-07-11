@@ -19,7 +19,6 @@ public class AbmsSeProApplication extends Application {
 	private Parent  root;
 
 	public static void main(String[] args) {
-
 		Application.launch(args);
 	}
 

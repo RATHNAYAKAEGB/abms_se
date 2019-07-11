@@ -60,7 +60,7 @@ public class Workers_Category_ManagementController<T> {
         btnSave.setDisable(false);
         btnDelete.setDisable(true);
         btnUpdate.setDisable(true);
-        rbIsActive.setSelected(true);
+        rbIsActive.setSelected(false);
         setId();
         ArrayList<String> types = new ArrayList<>();
         types.add("Fix");
@@ -235,7 +235,7 @@ public class Workers_Category_ManagementController<T> {
         txtCatID.clear();
         txtName.clear();
         txtDescription.clear();
-        rbIsActive.setSelected(true);
+        rbIsActive.setSelected(false);
         cmbSalaryType.setValue(null);
         btnDelete.setDisable(true);
         btnUpdate.setDisable(true);

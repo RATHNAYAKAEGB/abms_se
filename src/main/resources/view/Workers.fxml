@@ -12,25 +12,25 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="950.0" prefWidth="1612.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.abms.se.abms_se_pro.controller.WorkersController">
+<AnchorPane prefHeight="950.0" prefWidth="1612.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.abms.se.abms_se_pro.controller.WorkersController">
    <children>
-      <JFXTextField fx:id="txtWorkerID" labelFloat="true" layoutX="39.0" layoutY="119.0" prefHeight="31.0" prefWidth="345.0" promptText="Worker Number" />
-      <JFXTextField fx:id="txtNice" layoutX="39.0" layoutY="172.0" prefHeight="31.0" prefWidth="345.0" promptText="Nic" />
-      <JFXTextField fx:id="txtFullName" layoutX="39.0" layoutY="233.0" prefHeight="31.0" prefWidth="345.0" promptText="Full Name" />
-      <JFXTextField fx:id="txtAddress" layoutX="39.0" layoutY="286.0" prefHeight="31.0" prefWidth="345.0" promptText="Address" />
-      <JFXTextField fx:id="txtPhone" layoutX="39.0" layoutY="342.0" prefHeight="31.0" prefWidth="345.0" promptText="Phone" />
-      <Line endX="100.0" layoutX="151.0" layoutY="633.0" startX="-100.0" />
-      <Line endX="-101.5" endY="162.5" layoutX="146.0" layoutY="636.0" startX="-100.0" />
-      <JFXComboBox fx:id="cmbWorkerCategory" labelFloat="true" layoutX="39.0" layoutY="401.0" onAction="#cmbWorkerCategory_OnAction" prefHeight="31.0" prefWidth="345.0" promptText="Employee Category Number" />
-      <JFXTextField fx:id="txtWcatName" layoutX="39.0" layoutY="457.0" prefHeight="31.0" prefWidth="345.0" promptText="Worker Category" />
-      <Line endX="90.5" endY="-9.5" layoutX="161.0" layoutY="643.0" startX="89.5" startY="153.5" />
-      <Line endX="-111.0" endY="153.0" layoutX="158.0" layoutY="644.0" startX="92.0" startY="153.0" />
-      <JFXButton fx:id="btnBrows" layoutX="293.0" layoutY="701.0" onAction="#btnBrows_OnAcion" style="-fx-background-color: brown;" text="Brows" textFill="#f8f8f8">
+      <JFXTextField fx:id="txtWorkerID" labelFloat="true" layoutX="39.0" layoutY="162.0" prefHeight="31.0" prefWidth="345.0" promptText="Worker Number" />
+      <JFXTextField fx:id="txtNice" layoutX="39.0" layoutY="215.0" prefHeight="31.0" prefWidth="345.0" promptText="Nic" />
+      <JFXTextField fx:id="txtFullName" layoutX="39.0" layoutY="276.0" prefHeight="31.0" prefWidth="345.0" promptText="Full Name" />
+      <JFXTextField fx:id="txtAddress" layoutX="39.0" layoutY="329.0" prefHeight="31.0" prefWidth="345.0" promptText="Address" />
+      <JFXTextField fx:id="txtPhone" layoutX="39.0" layoutY="385.0" prefHeight="31.0" prefWidth="345.0" promptText="Phone" />
+      <Line endX="100.0" layoutX="186.0" layoutY="608.0" startX="-100.0" />
+      <Line endX="-101.5" endY="162.5" layoutX="181.0" layoutY="611.0" startX="-100.0" />
+      <JFXComboBox fx:id="cmbWorkerCategory" labelFloat="true" layoutX="39.0" layoutY="441.0" onAction="#cmbWorkerCategory_OnAction" prefHeight="31.0" prefWidth="345.0" promptText="Employee Category Number" />
+      <JFXTextField fx:id="txtWcatName" editable="false" layoutX="39.0" layoutY="500.0" prefHeight="31.0" prefWidth="345.0" promptText="Worker Category" />
+      <Line endX="90.5" endY="-9.5" layoutX="196.0" layoutY="618.0" startX="89.5" startY="153.5" />
+      <Line endX="-111.0" endY="153.0" layoutX="193.0" layoutY="619.0" startX="92.0" startY="153.0" />
+      <JFXButton fx:id="btnBrows" layoutX="149.0" layoutY="793.0" onAction="#btnBrows_OnAcion" style="-fx-background-color: brown;" text="Brows" textFill="#f8f8f8">
          <font>
             <Font name="Bauhaus 93" size="14.0" />
          </font>
       </JFXButton>
-      <ImageView fx:id="img_PP" fitHeight="164.0" fitWidth="204.0" layoutX="47.0" layoutY="632.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="img_PP" fitHeight="164.0" fitWidth="204.0" layoutX="82.0" layoutY="607.0" pickOnBounds="true" preserveRatio="true" />
       <JFXButton fx:id="btnSave" layoutX="38.0" layoutY="844.0" onAction="#btnSave_OnAction" prefHeight="31.0" prefWidth="92.0" style="-fx-background-color: green;" text="Save" textFill="#f7f7f7">
          <font>
             <Font name="Arial" size="19.0" />
@@ -51,17 +51,15 @@
             <Font name="Arial Black" size="42.0" />
          </font>
       </Label>
-      <JFXComboBox fx:id="cmbSiteName" labelFloat="true" layoutX="39.0" layoutY="512.0" onAction="#cmbSiteName_OnAction" prefHeight="31.0" prefWidth="345.0" promptText="Site Number" />
-      <JFXTextField fx:id="txtSiteName" layoutX="39.0" layoutY="568.0" prefHeight="31.0" prefWidth="345.0" promptText="Site Name" />
       <TableView fx:id="tblWorkers" layoutX="451.0" layoutY="181.0" prefHeight="755.0" prefWidth="1147.0">
         <columns>
           <TableColumn prefWidth="115.0" text="Worker No " />
-          <TableColumn prefWidth="141.0" text="Nic" />
-            <TableColumn prefWidth="154.0" text="Name" />
-            <TableColumn prefWidth="234.0" text="Address" />
-            <TableColumn prefWidth="131.0" text="Phone" />
-            <TableColumn prefWidth="202.0" text="Emp Category" />
-            <TableColumn prefWidth="169.0" text="Site Name" />
+          <TableColumn prefWidth="160.0" text="Nic" />
+            <TableColumn prefWidth="161.0" text="Name" />
+            <TableColumn prefWidth="197.0" text="Address" />
+            <TableColumn prefWidth="158.0" text="Phone" />
+            <TableColumn prefWidth="183.0" text="Emp Category" />
+            <TableColumn prefWidth="183.0" text="Managirial Or Not" />
         </columns>
       </TableView>
       <ImageView fitHeight="103.0" fitWidth="137.0" layoutX="270.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
@@ -75,5 +73,6 @@
             <Image url="@../img/back.png" />
          </image>
       </ImageView>
+      <JFXTextField fx:id="txtWorkerType" editable="false" layoutX="39.0" layoutY="559.0" prefHeight="31.0" prefWidth="345.0" promptText="Worker Type" />
    </children>
 </AnchorPane>
