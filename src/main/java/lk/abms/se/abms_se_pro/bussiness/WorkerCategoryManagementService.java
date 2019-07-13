@@ -2,6 +2,7 @@ package lk.abms.se.abms_se_pro.bussiness;
 
 import lk.abms.se.abms_se_pro.converter.ConverterDTO_ENTITY;
 import lk.abms.se.abms_se_pro.dao.EmployeeCatagoryRepository;
+import lk.abms.se.abms_se_pro.dao.WorkerRepository;
 import lk.abms.se.abms_se_pro.entity.WorkerCategory;
 import lk.abms.se.abms_se_pro.model.WorkerCategoryDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ import java.util.List;
 public class WorkerCategoryManagementService {
     @Autowired
     private EmployeeCatagoryRepository employeeCatagoryRepository;
+
+    @Autowired
+    private WorkerRepository workerRepository;
 
     public WorkerCategoryManagementService() {
         System.out.println("------------------WorkerCategoryManagementService-----------------------");

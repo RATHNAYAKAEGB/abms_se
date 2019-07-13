@@ -2,7 +2,9 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -14,34 +16,43 @@
 
 <AnchorPane prefHeight="950.0" prefWidth="1612.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.abms.se.abms_se_pro.controller.WorkersController">
    <children>
-      <JFXTextField fx:id="txtWorkerID" labelFloat="true" layoutX="39.0" layoutY="162.0" prefHeight="31.0" prefWidth="345.0" promptText="Worker Number" />
-      <JFXTextField fx:id="txtNice" layoutX="39.0" layoutY="215.0" prefHeight="31.0" prefWidth="345.0" promptText="Nic" />
-      <JFXTextField fx:id="txtFullName" layoutX="39.0" layoutY="276.0" prefHeight="31.0" prefWidth="345.0" promptText="Full Name" />
-      <JFXTextField fx:id="txtAddress" layoutX="39.0" layoutY="329.0" prefHeight="31.0" prefWidth="345.0" promptText="Address" />
-      <JFXTextField fx:id="txtPhone" layoutX="39.0" layoutY="385.0" prefHeight="31.0" prefWidth="345.0" promptText="Phone" />
-      <Line endX="100.0" layoutX="186.0" layoutY="608.0" startX="-100.0" />
-      <Line endX="-101.5" endY="162.5" layoutX="181.0" layoutY="611.0" startX="-100.0" />
+      <JFXTextField fx:id="txtWorkerID" editable="false" labelFloat="true" layoutX="39.0" layoutY="142.0" prefHeight="31.0" prefWidth="345.0" promptText="Worker Number" />
+      <JFXTextField fx:id="txtNice" labelFloat="true" layoutX="39.0" layoutY="193.0" prefHeight="31.0" prefWidth="345.0" promptText="Nic" />
+      <JFXTextField fx:id="txtFirstName" labelFloat="true" layoutX="36.0" layoutY="236.0" prefHeight="31.0" prefWidth="345.0" promptText="First Name" />
+      <JFXTextField fx:id="txtFullName" labelFloat="true" layoutX="39.0" layoutY="286.0" prefHeight="31.0" prefWidth="345.0" promptText="Full Name" />
+      <JFXTextField fx:id="txtAddress" labelFloat="true" layoutX="39.0" layoutY="335.0" prefHeight="31.0" prefWidth="345.0" promptText="Address" />
+      <JFXTextField fx:id="txtPhone" labelFloat="true" layoutX="39.0" layoutY="385.0" prefHeight="31.0" prefWidth="345.0" promptText="Phone" />
       <JFXComboBox fx:id="cmbWorkerCategory" labelFloat="true" layoutX="39.0" layoutY="441.0" onAction="#cmbWorkerCategory_OnAction" prefHeight="31.0" prefWidth="345.0" promptText="Employee Category Number" />
-      <JFXTextField fx:id="txtWcatName" editable="false" layoutX="39.0" layoutY="500.0" prefHeight="31.0" prefWidth="345.0" promptText="Worker Category" />
-      <Line endX="90.5" endY="-9.5" layoutX="196.0" layoutY="618.0" startX="89.5" startY="153.5" />
-      <Line endX="-111.0" endY="153.0" layoutX="193.0" layoutY="619.0" startX="92.0" startY="153.0" />
-      <JFXButton fx:id="btnBrows" layoutX="149.0" layoutY="793.0" onAction="#btnBrows_OnAcion" style="-fx-background-color: brown;" text="Brows" textFill="#f8f8f8">
+      <JFXTextField fx:id="txtWcatName" editable="false" labelFloat="true" layoutX="39.0" layoutY="500.0" prefHeight="31.0" prefWidth="345.0" promptText="Worker Category" />
+      <JFXTextField fx:id="txtWorkerType" editable="false" labelFloat="true" layoutX="39.0" layoutY="559.0" prefHeight="31.0" prefWidth="345.0" promptText="Worker Type" />
+      <JFXTextField fx:id="txtSearch" layoutX="451.0" layoutY="135.0" onKeyPressed="#txtSearch_OnKeyPress" prefHeight="31.0" prefWidth="345.0" promptText="ENTER NIC OR EMP ID TO SEARCH" />
+      <Line endX="100.0" layoutX="186.0" layoutY="662.0" startX="-100.0" />
+      <Line endX="-101.5" endY="162.5" layoutX="181.0" layoutY="665.0" startX="-100.0" />
+      <Line endX="90.5" endY="-9.5" layoutX="196.0" layoutY="672.0" startX="89.5" startY="153.5" />
+      <Line endX="-111.0" endY="153.0" layoutX="193.0" layoutY="673.0" startX="92.0" startY="153.0" />
+      <JFXButton fx:id="btnBrows" layoutX="149.0" layoutY="847.0" onAction="#btnBrows_OnAcion" style="-fx-background-color: brown;" text="Brows" textFill="#f8f8f8">
          <font>
             <Font name="Bauhaus 93" size="14.0" />
          </font>
       </JFXButton>
-      <ImageView fx:id="img_PP" fitHeight="164.0" fitWidth="204.0" layoutX="82.0" layoutY="607.0" pickOnBounds="true" preserveRatio="true" />
-      <JFXButton fx:id="btnSave" layoutX="38.0" layoutY="844.0" onAction="#btnSave_OnAction" prefHeight="31.0" prefWidth="92.0" style="-fx-background-color: green;" text="Save" textFill="#f7f7f7">
+      <ImageView fx:id="img_PP" fitHeight="164.0" fitWidth="500.0" layoutX="112.0" layoutY="662.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/noPhoto.jpg" />
+         </image>
+         <viewport>
+            <Rectangle2D width="300.0" />
+         </viewport></ImageView>
+      <JFXButton fx:id="btnSave" layoutX="38.0" layoutY="898.0" onAction="#btnSave_OnAction" prefHeight="31.0" prefWidth="92.0" style="-fx-background-color: green;" text="Save" textFill="#f7f7f7">
          <font>
             <Font name="Arial" size="19.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="btnUpdate" layoutX="147.0" layoutY="845.0" onAction="#btnUpdate_OnAction" prefHeight="31.0" prefWidth="92.0" style="-fx-background-color: brown;" text="Update" textFill="#f7f7f7">
+      <JFXButton fx:id="btnUpdate" layoutX="147.0" layoutY="899.0" onAction="#btnUpdate_OnAction" prefHeight="31.0" prefWidth="92.0" style="-fx-background-color: brown;" text="Update" textFill="#f7f7f7">
          <font>
             <Font name="Arial" size="19.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="btnDelete" layoutX="252.0" layoutY="844.0" onAction="#btnDelete_OnAction" prefHeight="31.0" prefWidth="92.0" style="-fx-background-color: red;" text="Delete" textFill="#f7f7f7">
+      <JFXButton fx:id="btnDelete" layoutX="252.0" layoutY="898.0" onAction="#btnDelete_OnAction" prefHeight="31.0" prefWidth="92.0" style="-fx-background-color: red;" text="Delete" textFill="#f7f7f7">
          <font>
             <Font name="Arial" size="19.0" />
          </font>
@@ -54,12 +65,14 @@
       <TableView fx:id="tblWorkers" layoutX="451.0" layoutY="181.0" prefHeight="755.0" prefWidth="1147.0">
         <columns>
           <TableColumn prefWidth="115.0" text="Worker No " />
-          <TableColumn prefWidth="160.0" text="Nic" />
-            <TableColumn prefWidth="161.0" text="Name" />
-            <TableColumn prefWidth="197.0" text="Address" />
-            <TableColumn prefWidth="158.0" text="Phone" />
-            <TableColumn prefWidth="183.0" text="Emp Category" />
-            <TableColumn prefWidth="183.0" text="Managirial Or Not" />
+          <TableColumn prefWidth="110.0" text="Nic" />
+            <TableColumn prefWidth="120.0" text="First Name" />
+            <TableColumn prefWidth="154.0" text="Full Name" />
+            <TableColumn prefWidth="154.0" text="Address" />
+            <TableColumn prefWidth="121.0" text="Phone" />
+            <TableColumn prefWidth="111.0" text="Worker Cat" />
+            <TableColumn prefWidth="132.0" text="Managirial Or Not" />
+            <TableColumn prefWidth="129.0" text="Reg Date" />
         </columns>
       </TableView>
       <ImageView fitHeight="103.0" fitWidth="137.0" layoutX="270.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
@@ -67,12 +80,11 @@
             <Image url="@../img/worker.png" />
          </image>
       </ImageView>
-      <JFXTextField fx:id="txtSearch" layoutX="451.0" layoutY="135.0" onKeyPressed="#txtSearch_OnKeyPress" prefHeight="31.0" prefWidth="345.0" promptText="ENTER NIC OR EMP ID TO SEARCH" />
       <ImageView fx:id="img_Back" fitHeight="88.0" fitWidth="92.0" layoutX="14.0" layoutY="10.0" onMouseClicked="#img_Back_OnMosueClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/back.png" />
          </image>
       </ImageView>
-      <JFXTextField fx:id="txtWorkerType" editable="false" layoutX="39.0" layoutY="559.0" prefHeight="31.0" prefWidth="345.0" promptText="Worker Type" />
+      <JFXDatePicker fx:id="txtDate" layoutX="36.0" layoutY="610.0" prefHeight="31.0" prefWidth="359.0" promptText="Reg Date" />
    </children>
 </AnchorPane>

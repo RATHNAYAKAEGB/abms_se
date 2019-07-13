@@ -17,6 +17,16 @@ import java.io.IOException;
 
 public class WorkersAttendenceController {
     @FXML
+    private JFXButton btnPrint;
+    @FXML
+    private JFXTextField txtEmpId;
+    @FXML
+    private JFXDatePicker txtStartDate;
+    @FXML
+    private JFXDatePicker txtEndDate;
+    @FXML
+    private JFXButton btnFind;
+    @FXML
     private ImageView img_Back;
     @FXML
     private  JFXTextField txtWorkerId;
@@ -24,8 +34,6 @@ public class WorkersAttendenceController {
     private  JFXTextField txtNic;
     @FXML
     private  JFXTextField txtWorkerName;
-    @FXML
-    private  JFXTextField txtWorkerSite;
     @FXML
     private  JFXDatePicker txtAttendenceDate;
     @FXML
@@ -66,10 +74,13 @@ public class WorkersAttendenceController {
 
     @FXML
     private  void cmbSiteNumber_OnAction(ActionEvent actionEvent) {
+
+
     }
 
     @FXML
     private  void btnAdd_OnAction(ActionEvent actionEvent) {
+        System.out.println(txtInTime.getValue());
     }
 
     @FXML
@@ -78,5 +89,13 @@ public class WorkersAttendenceController {
 
     @FXML
     private  void btnInSert_onAction(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    private void btnPrint_OnAction(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    private void btnFind_OnAction(ActionEvent actionEvent) {
     }
 }

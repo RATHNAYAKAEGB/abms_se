@@ -2,9 +2,14 @@ package lk.abms.se.abms_se_pro.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import javafx.animation.TranslateTransition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -27,18 +33,36 @@ import javafx.util.Duration;
 import lk.abms.se.abms_se_pro.AbmsSeProApplication;
 import lk.abms.se.abms_se_pro.bussiness.PaymentVariableManagementService;
 import lk.abms.se.abms_se_pro.bussiness.WorkerCategoryManagementService;
+import lk.abms.se.abms_se_pro.bussiness.WorkerManageService;
+import lk.abms.se.abms_se_pro.entity.Worker;
+import lk.abms.se.abms_se_pro.model.PaymentVariableDTO;
 import lk.abms.se.abms_se_pro.model.WorkerCategoryDTO;
+import lk.abms.se.abms_se_pro.model.WorkerDTO;
+import lk.abms.se.abms_se_pro.util.ValidationNumbers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
-public class WorkersController {
+public class WorkersController<T> {
+    @FXML
+    private JFXDatePicker txtDate;
+    @FXML
+    private JFXTextField txtFirstName;
     @FXML
     private JFXTextField txtWorkerType;
     @FXML
@@ -68,18 +92,59 @@ public class WorkersController {
     @FXML
     private JFXButton btnDelete;
     @FXML
-    private TableView tblWorkers;
+    private TableView<WorkerDTO> tblWorkers;
     @FXML
     private JFXTextField txtSearch;
 
-    private PaymentVariableManagementService paymentVariableManagementService = AbmsSeProApplication.ctx.getBean(PaymentVariableManagementService.class);
     private WorkerCategoryManagementService workerCategoryManagementService = AbmsSeProApplication.ctx.getBean(WorkerCategoryManagementService.class);
+    private WorkerManageService workerManageService = AbmsSeProApplication.ctx.getBean(WorkerManageService.class);
     private List<WorkerCategoryDTO> categoryDTOList = new ArrayList<>();
     private static final Logger logger = LogManager.getLogger(WorkersController.class);
     private String img_url = " ";
 
     public void initialize() {
+        loadAllWorkers();
         setWorkerGroups();
+        setWorkerNumber();
+        btnSave.setDisable(false);
+        btnDelete.setDisable(true);
+        btnUpdate.setDisable(true);
+
+        tblWorkers.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("workerId"));
+        tblWorkers.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("nic"));
+        tblWorkers.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        tblWorkers.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("fullName"));
+        tblWorkers.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("address"));
+        tblWorkers.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("mobile"));
+        tblWorkers.getColumns().get(6).setCellValueFactory(new PropertyValueFactory<>("catName"));
+        tblWorkers.getColumns().get(7).setCellValueFactory(new PropertyValueFactory<>("catType"));
+        tblWorkers.getColumns().get(8).setCellValueFactory(new PropertyValueFactory<>("regDate"));
+
+
+        tblWorkers.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<WorkerDTO>() {
+            @Override
+            public void changed(ObservableValue<? extends WorkerDTO> observable, WorkerDTO oldValue, WorkerDTO c) {
+                if (c == null) {
+                    return;
+                }
+                btnSave.setDisable(true);
+                btnDelete.setDisable(false);
+                btnUpdate.setDisable(false);
+                txtAddress.setText(c.getAddress());
+                txtNice.setText(c.getNic() + "");
+                txtFirstName.setText(c.getFirstName());
+                txtFullName.setText(c.getFullName());
+                cmbWorkerCategory.setValue(c.getCat_Id());
+                LocalDate date = c.getRegDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                txtDate.setValue(date);
+                txtPhone.setText(c.getMobile());
+                txtWorkerID.setText(c.getWorkerId());
+                img_PP.setImage(new Image(new ByteArrayInputStream(c.getImg())));//Byte Array to Image View
+
+            }
+        });
+
+
     }
 
 
@@ -91,15 +156,156 @@ public class WorkersController {
     @FXML
     private void btnDelete_OnAction(ActionEvent actionEvent) {
 
+        if (!btnDelete.isDisable()) {
+            try {
+                workerManageService.deleteWorker(txtWorkerID.getText().trim());
+                new Alert(Alert.AlertType.INFORMATION, "Worker Deleted Successfully !", ButtonType.OK).showAndWait();
+            } catch (Exception e) {
+                new Alert(Alert.AlertType.ERROR, "Error!", ButtonType.OK).showAndWait();
+                e.printStackTrace();
+            }
+
+
+        }
+        reSet();
     }
 
     @FXML
     private void btnUpdate_OnAction(ActionEvent actionEvent) {
+        if (txtWorkerID.getText().trim().isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Worker Id Is Empty !", ButtonType.OK).showAndWait();
+            txtWorkerID.requestFocus();
+            return;
+        }
+
+        if (txtFirstName.getText().trim().isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, " First Name Is Empty !", ButtonType.OK).showAndWait();
+            txtFirstName.requestFocus();
+            return;
+        }
+        if (txtFullName.getText().trim().isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, " Full Name Is Empty !", ButtonType.OK).showAndWait();
+            txtFullName.requestFocus();
+            return;
+        }
+
+        if (null == cmbWorkerCategory.getValue()) {
+            new Alert(Alert.AlertType.ERROR, "  Select Worker Group Type!", ButtonType.OK).showAndWait();
+            cmbWorkerCategory.requestFocus();
+            return;
+        }
+
+
+        String workerId = txtWorkerID.getText().trim();
+        String fName = txtFirstName.getText().trim();
+        String fullName = txtFullName.getText().trim();
+        String catId = cmbWorkerCategory.getValue().toString();
+        String nic = txtNice.getText().trim();
+        String mobile = txtPhone.getText().trim();
+        String address = txtAddress.getText().trim();
+        byte[] pp = new byte[0];
+        try {
+            BufferedImage bImage = SwingFXUtils.fromFXImage(img_PP.getImage(), null);
+            ByteArrayOutputStream s = new ByteArrayOutputStream();
+            ImageIO.write(bImage, "png", s);
+            byte[] res = s.toByteArray();
+            System.out.println("Byte Array ----" + res);
+            pp = res;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date regDate = null;
+        try {
+            logger.info("........................");
+            regDate = simpleDateFormat.parse(txtDate.getValue().toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        WorkerDTO dto = new WorkerDTO(workerId, nic, fName, fullName, address, pp, mobile, catId, null, null, regDate);
+
+        try {
+            workerManageService.updateWorker(dto);
+            new Alert(Alert.AlertType.CONFIRMATION, " Worker Updated Successfully  !", ButtonType.OK).showAndWait();
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, " Error !", ButtonType.OK).showAndWait();
+            e.printStackTrace();
+            logger.debug(e);
+        }
+
+        reSet();
     }
 
     @FXML
     private void btnSave_OnAction(ActionEvent actionEvent) {
 
+        if (txtWorkerID.getText().trim().isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Worker Id Is Empty !", ButtonType.OK).showAndWait();
+            txtWorkerID.requestFocus();
+            return;
+        }
+
+        if (txtFirstName.getText().trim().isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, " First Name Is Empty !", ButtonType.OK).showAndWait();
+            txtFirstName.requestFocus();
+            return;
+        }
+        if (txtFullName.getText().trim().isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, " Full Name Is Empty !", ButtonType.OK).showAndWait();
+            txtFullName.requestFocus();
+            return;
+        }
+
+        if (null == cmbWorkerCategory.getValue()) {
+            new Alert(Alert.AlertType.ERROR, "  Select Worker Group Type!", ButtonType.OK).showAndWait();
+            cmbWorkerCategory.requestFocus();
+            return;
+        }
+
+
+        String workerId = txtWorkerID.getText().trim();
+        String fName = txtFirstName.getText().trim();
+        String fullName = txtFullName.getText().trim();
+        String catId = cmbWorkerCategory.getValue().toString();
+        String nic = txtNice.getText().trim();
+        String mobile = txtPhone.getText().trim();
+        String address = txtAddress.getText().trim();
+        byte[] pp = new byte[0];
+        try {
+            BufferedImage bImage = SwingFXUtils.fromFXImage(img_PP.getImage(), null);
+            ByteArrayOutputStream s = new ByteArrayOutputStream();
+            ImageIO.write(bImage, "png", s);
+            byte[] res = s.toByteArray();
+            System.out.println("Byte Array ----" + res);
+            pp = res;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date regDate = null;
+        try {
+            regDate = simpleDateFormat.parse(txtDate.getValue().toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        WorkerDTO dto = new WorkerDTO(workerId, nic, fName, fullName, address, pp, mobile, catId, null, null, regDate);
+
+        try {
+            workerManageService.createWorker(dto);
+            new Alert(Alert.AlertType.CONFIRMATION, " Worker Registered Successfully  !", ButtonType.OK).showAndWait();
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, " Error !", ButtonType.OK).showAndWait();
+            e.printStackTrace();
+            logger.debug(e);
+        }
+
+        reSet();
 
 
     }
@@ -125,15 +331,19 @@ public class WorkersController {
     @FXML
     private void cmbWorkerCategory_OnAction(ActionEvent actionEvent) {
 
-        if(null==cmbWorkerCategory.getValue()){return;}
+        if (null == cmbWorkerCategory.getValue()) {
+            return;
+        }
 
         String groupId = cmbWorkerCategory.getValue().toString();
         for (WorkerCategoryDTO c : categoryDTOList) {
             if (c.getCat_Id().equals(groupId)) {
                 txtWcatName.setText(c.getCat_Name());
-                if(c.isACtive()){
+                if (c.isACtive()) {
                     txtWorkerType.setText("Manager Level Employee");
-                }else {txtWorkerType.setText("Non Manager Level Employee");}
+                } else {
+                    txtWorkerType.setText("Non Manager Level Employee");
+                }
             }
         }
 
@@ -174,6 +384,60 @@ public class WorkersController {
             }
         }
         return null;
+
+    }
+
+
+    private void loadAllWorkers() {
+
+        try {
+            List<WorkerDTO> temp = workerManageService.findAllWorkers();
+            if (null == temp) {
+                return;
+            }
+            logger.info("................" + temp);
+            tblWorkers.setItems(FXCollections.observableArrayList(temp));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void setWorkerNumber() {
+        ObservableList<WorkerDTO> items = tblWorkers.getItems();
+        int max = 0;
+        if (items == null || items.size() == 0) {
+            txtWorkerID.setText("WRNO0" + 1);
+            return;
+        }
+        for (WorkerDTO c : items) {
+            String subCId = c.getWorkerId();
+            int i = Integer.parseInt(subCId.substring(5));
+            if (max < i) {
+                max = i;
+            }
+            txtWorkerID.setText("WRNO0" + (++max));
+
+        }
+
+    }
+
+    private void reSet() {
+        txtAddress.clear();
+        txtFirstName.clear();
+        txtFullName.clear();
+        txtPhone.clear();
+        txtNice.clear();
+        txtDate.setValue(null);
+        txtPhone.clear();
+        cmbWorkerCategory.setValue(null);
+        txtWcatName.clear();
+        txtWorkerType.clear();
+        btnDelete.setDisable(true);
+        btnUpdate.setDisable(true);
+        btnSave.setDisable(false);
+        setWorkerNumber();
+        loadAllWorkers();
 
     }
 }

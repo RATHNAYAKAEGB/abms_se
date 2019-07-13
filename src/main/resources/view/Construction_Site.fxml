@@ -16,48 +16,53 @@
 
 <AnchorPane prefHeight="838.0" prefWidth="1216.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.abms.se.abms_se_pro.controller.Construction_SiteController">
    <children>
-      <JFXTextField fx:id="txtSiteId" editable="false" labelFloat="true" layoutX="26.0" layoutY="181.0" prefHeight="31.0" prefWidth="398.0" promptText="Site ID" />
-      <JFXTextField fx:id="txtName" labelFloat="true" layoutX="26.0" layoutY="297.0" prefHeight="31.0" prefWidth="398.0" promptText="Site Name" />
-      <JFXTextField fx:id="txtAddress" layoutX="26.0" layoutY="348.0" prefHeight="31.0" prefWidth="398.0" promptText="Address" />
-      <JFXComboBox fx:id="txtSupervisor" labelFloat="true" layoutX="26.0" layoutY="409.0" onAction="#txtSupervisor_OnAction" prefHeight="31.0" prefWidth="398.0" promptText="Superviser" />
-      <ImageView fx:id="img_supervior" fitHeight="207.0" fitWidth="211.0" layoutX="39.0" layoutY="504.0" pickOnBounds="true" preserveRatio="true" />
-      <Line endX="109.79290771484375" endY="-0.70709228515625" layoutX="138.0" layoutY="504.0" startX="-100.0" />
-      <Line endX="100.5" endY="-9.292877197265625" layoutX="148.0" layoutY="514.0" startX="100.5" startY="203.5" />
-      <Line endX="-120.0" endY="125.0" layoutX="158.0" layoutY="592.0" startX="90.0" startY="125.0" />
-      <Line endX="-119.5" endY="190.0" layoutX="157.0" layoutY="527.0" startX="-119.70709228515625" startY="-22.292877197265625" />
-      <TableView fx:id="tblSite" layoutX="449.0" layoutY="110.0" prefHeight="700.0" prefWidth="752.0">
+      <JFXTextField fx:id="txtSiteId" editable="false" labelFloat="true" layoutX="26.0" layoutY="166.0" prefHeight="31.0" prefWidth="398.0" promptText="Site ID" />
+      <JFXDatePicker fx:id="txtRegDate" layoutX="26.0" layoutY="228.0" prefHeight="31.0" prefWidth="398.0" promptText="Register Date" />
+      <JFXTextField fx:id="txtName" labelFloat="true" layoutX="26.0" layoutY="282.0" prefHeight="31.0" prefWidth="398.0" promptText="Site Name" />
+      <JFXTextField fx:id="txtAddress" labelFloat="true" layoutX="26.0" layoutY="333.0" prefHeight="31.0" prefWidth="398.0" promptText="Address" />
+      <JFXComboBox fx:id="cmbSupervisors" labelFloat="true" layoutX="26.0" layoutY="391.0" onAction="#cmbSupervisors_OnAction" prefHeight="31.0" prefWidth="398.0" promptText="Superviser Id" />
+      <JFXTextField fx:id="txtSuperName" editable="false" labelFloat="true" layoutX="28.0" layoutY="454.0" prefHeight="31.0" prefWidth="398.0" promptText="Superviser Name" />
+      <JFXRadioButton fx:id="rbIsActive" layoutX="284.0" layoutY="583.0" text=" Is Active Site" textFill="#dd0b0b">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></JFXRadioButton>
+      <ImageView fx:id="img_supervior" fitHeight="184.0" fitWidth="211.0" layoutX="39.0" layoutY="565.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+      <Line endX="109.79290771484375" endY="-0.70709228515625" layoutX="138.0" layoutY="570.0" startX="-100.0" />
+      <Line endX="100.5" endY="16.5858154296875" layoutX="148.0" layoutY="552.0" startX="100.5" startY="203.5" />
+      <Line endX="-120.0" endY="125.0" layoutX="158.0" layoutY="630.0" startX="90.0" startY="125.0" />
+      <Line endX="-119.5" endY="190.0" layoutX="157.0" layoutY="565.0" startX="-119.70709228515625" startY="4.646484375" />
+      <TableView fx:id="tblSite" layoutX="450.0" layoutY="104.0" prefHeight="700.0" prefWidth="752.0">
         <columns>
           <TableColumn prefWidth="105.0" text="Site ID" />
           <TableColumn prefWidth="104.0" text="Reg Date" />
-            <TableColumn prefWidth="165.0" text=" Site Name" />
-            <TableColumn prefWidth="144.0" text="Address" />
-            <TableColumn prefWidth="151.0" text="Supervisour" />
-            <TableColumn prefWidth="82.0" text=" Is Active" />
+            <TableColumn prefWidth="148.0" text=" Site Name" />
+            <TableColumn prefWidth="102.0" text="Address" />
+            <TableColumn prefWidth="100.0" text="Supervisour" />
+            <TableColumn prefWidth="105.0" text=" Is Active site" />
+            <TableColumn prefWidth="87.0" text="sup Mobile" />
         </columns>
       </TableView>
-      <JFXButton fx:id="btnSave" layoutX="26.0" layoutY="753.0" onAction="#btnSave_OnAction" prefHeight="31.0" prefWidth="92.0" style="-fx-background-color: green;" text="Save" textFill="#f7f7f7">
+      <JFXButton fx:id="btnSave" layoutX="26.0" layoutY="791.0" onAction="#btnSave_OnAction" prefHeight="31.0" prefWidth="92.0" style="-fx-background-color: green;" text="Save" textFill="#f7f7f7">
          <font>
             <Font name="Arial" size="19.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="btnUpdate" layoutX="135.0" layoutY="754.0" onAction="#btnUpdate_OnAction" prefHeight="31.0" prefWidth="92.0" style="-fx-background-color: brown;" text="Update" textFill="#f7f7f7">
+      <JFXButton fx:id="btnUpdate" layoutX="135.0" layoutY="792.0" onAction="#btnUpdate_OnAction" prefHeight="31.0" prefWidth="92.0" style="-fx-background-color: brown;" text="Update" textFill="#f7f7f7">
          <font>
             <Font name="Arial" size="19.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="btnDelete" layoutX="240.0" layoutY="753.0" onAction="#btnDelete_OnAction" prefHeight="31.0" prefWidth="92.0" style="-fx-background-color: red;" text="Delete" textFill="#f7f7f7">
+      <JFXButton fx:id="btnDelete" layoutX="240.0" layoutY="791.0" onAction="#btnDelete_OnAction" prefHeight="31.0" prefWidth="92.0" style="-fx-background-color: red;" text="Delete" textFill="#f7f7f7">
          <font>
             <Font name="Arial" size="19.0" />
          </font>
       </JFXButton>
-      <JFXDatePicker fx:id="txtRegDate" layoutX="26.0" layoutY="243.0" prefHeight="31.0" prefWidth="398.0" promptText="Register Date" />
       <Label alignment="CENTER" layoutX="446.0" layoutY="12.0" prefHeight="62.0" prefWidth="724.0" text="Construction Site Management">
          <font>
             <Font name="Arial Black" size="42.0" />
          </font>
       </Label>
-      <JFXRadioButton fx:id="rbIsActive" layoutX="26.0" layoutY="464.0" text=" Is Active Site" />
-      <Label layoutX="276.0" layoutY="601.0" prefHeight="21.0" prefWidth="92.0" text="Supervisor " />
+      <Label layoutX="276.0" layoutY="658.0" prefHeight="21.0" prefWidth="92.0" text="Supervisor " />
       <ImageView fitHeight="136.0" fitWidth="252.0" layoutX="159.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/site_C.jpg" />
@@ -68,5 +73,6 @@
             <Image url="@../img/back.png" />
          </image>
       </ImageView>
+      <JFXTextField fx:id="txtSupPhone" editable="false" labelFloat="true" layoutX="28.0" layoutY="510.0" prefHeight="31.0" prefWidth="398.0" promptText="Superviser Mobile" />
    </children>
 </AnchorPane>

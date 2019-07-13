@@ -46,7 +46,6 @@ public class PaymentVariableManagementService {
     }
 
     public List<PaymentVariableDTO> findAllPaymentVariable() throws Exception {
-        System.out.println(paymentVariableRepository.findAll());
         return ConverterDTO_ENTITY.getDTOList(paymentVariableRepository.findAll());
     }
 

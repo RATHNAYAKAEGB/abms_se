@@ -13,9 +13,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="853.0" prefWidth="1746.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.abms.se.abms_se_pro.controller.WorkersAttendenceController">
+<AnchorPane prefHeight="853.0" prefWidth="1798.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.abms.se.abms_se_pro.controller.WorkersAttendenceController">
    <children>
+      <JFXComboBox fx:id="cmbSiteNumber" layoutX="37.0" layoutY="176.0" onAction="#cmbSiteNumber_OnAction" prefHeight="31.0" prefWidth="409.0" promptText="Site Number" />
+      <JFXTextField fx:id="txtWorkerId" labelFloat="true" layoutX="33.0" layoutY="325.0" prefHeight="31.0" prefWidth="416.0" promptText="Worker Id" />
+      <JFXTextField fx:id="txtSiteName" editable="false" labelFloat="true" layoutX="34.0" layoutY="226.0" prefHeight="31.0" prefWidth="416.0" promptText="Site Name" />
+      <JFXTextField fx:id="txtSupervisor" editable="false" labelFloat="true" layoutX="35.0" layoutY="279.0" prefHeight="31.0" prefWidth="416.0" promptText="Supervisor" />
+      <JFXTextField fx:id="txtNic" labelFloat="true" layoutX="37.0" layoutY="380.0" prefHeight="31.0" prefWidth="416.0" promptText="Nic" />
+      <JFXTextField fx:id="txtWorkerName" editable="false" labelFloat="true" layoutX="37.0" layoutY="434.0" prefHeight="31.0" prefWidth="416.0" promptText="Worker Name" />
+      <JFXDatePicker fx:id="txtAttendenceDate" layoutX="37.0" layoutY="498.0" prefHeight="31.0" prefWidth="416.0" promptText="Attendence Date" />
+      <JFXTimePicker fx:id="txtInTime" layoutX="37.0" layoutY="556.0" prefHeight="31.0" prefWidth="416.0" promptText="In Time" />
+      <JFXTimePicker fx:id="txtOutTime" layoutX="40.0" layoutY="617.0" prefHeight="31.0" prefWidth="416.0" promptText="Out Time" />
+      <JFXTextField fx:id="txtAdvancePayment" labelFloat="true" layoutX="40.0" layoutY="674.0" prefHeight="31.0" prefWidth="416.0" promptText="Advance Payment" />
       <Label alignment="CENTER" layoutX="165.0" layoutY="24.0" prefHeight="62.0" prefWidth="1001.0" text="Manage Workers Attendence">
          <font>
             <Font name="Arial Black" size="42.0" />
@@ -26,17 +35,6 @@
             <Image url="@../img/back.png" />
          </image>
       </ImageView>
-      <JFXTextField fx:id="txtWorkerId" labelFloat="true" layoutX="33.0" layoutY="325.0" prefHeight="31.0" prefWidth="416.0" promptText="Worker Id" />
-      <JFXTextField fx:id="txtNic" labelFloat="true" layoutX="37.0" layoutY="380.0" prefHeight="31.0" prefWidth="416.0" promptText="Nic" />
-      <JFXTextField fx:id="txtWorkerName" labelFloat="true" layoutX="37.0" layoutY="434.0" prefHeight="31.0" prefWidth="416.0" promptText="Worker Name" />
-      <JFXTextField fx:id="txtWorkerSite" labelFloat="true" layoutX="37.0" layoutY="490.0" prefHeight="31.0" prefWidth="416.0" promptText="Worker Site" />
-      <JFXDatePicker fx:id="txtAttendenceDate" layoutX="37.0" layoutY="543.0" prefHeight="31.0" prefWidth="416.0" promptText="Attendence Date" />
-      <JFXTimePicker fx:id="txtInTime" layoutX="37.0" layoutY="596.0" prefHeight="31.0" prefWidth="416.0" promptText="In Time" />
-      <JFXTimePicker fx:id="txtOutTime" layoutX="40.0" layoutY="642.0" prefHeight="31.0" prefWidth="416.0" promptText="Out Time" />
-      <JFXTextField fx:id="txtAdvancePayment" labelFloat="true" layoutX="40.0" layoutY="696.0" prefHeight="31.0" prefWidth="416.0" promptText="Advance Payment" />
-      <JFXComboBox fx:id="cmbSiteNumber" layoutX="37.0" layoutY="176.0" onAction="#cmbSiteNumber_OnAction" prefHeight="31.0" prefWidth="409.0" promptText="Site Number" />
-      <JFXTextField fx:id="txtSiteName" labelFloat="true" layoutX="34.0" layoutY="226.0" prefHeight="31.0" prefWidth="416.0" promptText="Site Name" />
-      <JFXTextField fx:id="txtSupervisor" labelFloat="true" layoutX="35.0" layoutY="279.0" prefHeight="31.0" prefWidth="416.0" promptText="Supervisor" />
       <JFXButton fx:id="btnAdd" layoutX="132.0" layoutY="769.0" onAction="#btnAdd_OnAction" prefHeight="36.0" prefWidth="110.0" style="-fx-background-color: blue;" text="Add" textFill="WHITE">
          <font>
             <Font name="Arial Narrow Bold" size="19.0" />
@@ -47,7 +45,7 @@
             <Font name="Arial Narrow Bold" size="19.0" />
          </font>
       </JFXButton>
-      <TableView fx:id="tblAttendence" layoutX="520.0" layoutY="185.0" prefHeight="606.0" prefWidth="1212.0">
+      <TableView fx:id="tblAttendence" layoutX="520.0" layoutY="185.0" prefHeight="606.0" prefWidth="1242.0">
         <columns>
           <TableColumn prefWidth="104.0" text="Site Number" />
           <TableColumn prefWidth="87.0" text="Site Name" />
@@ -57,10 +55,11 @@
             <TableColumn prefWidth="117.0" text="Worker Name" />
             <TableColumn minWidth="1.0" prefWidth="1.0" text="C2" />
             <TableColumn prefWidth="89.0" text="Site Name" />
-            <TableColumn prefWidth="142.0" text="Attendence Date" />
-            <TableColumn prefWidth="123.0" text="In Time" />
-            <TableColumn prefWidth="102.0" text="Out Time" />
-            <TableColumn prefWidth="175.0" text="Advance Payment" />
+            <TableColumn prefWidth="127.0" text="Attendence Date" />
+            <TableColumn prefWidth="81.0" text="In Time" />
+            <TableColumn prefWidth="96.0" text="Out Time" />
+            <TableColumn prefWidth="138.0" text="Advance Payment" />
+            <TableColumn prefWidth="153.0" text="Worked Hours" />
         </columns>
       </TableView>
       <JFXButton fx:id="btnInSert" layoutX="518.0" layoutY="801.0" onAction="#btnInSert_onAction" prefHeight="45.0" prefWidth="138.0" style="-fx-background-color: green;" text="Insert" textFill="WHITE">
@@ -73,5 +72,18 @@
             <Image url="@../img/attendence.png" />
          </image>
       </ImageView>
+      <JFXButton fx:id="btnPrint" layoutX="1586.0" layoutY="801.0" onAction="#btnPrint_OnAction" prefHeight="45.0" prefWidth="138.0" style="-fx-background-color: pink;" text="Print" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="15.0" />
+         </font>
+      </JFXButton>
+      <JFXTextField fx:id="txtEmpId" labelFloat="true" layoutX="520.0" layoutY="137.0" prefHeight="31.0" prefWidth="252.0" promptText="txtSempId" />
+      <JFXDatePicker fx:id="txtStartDate" layoutX="845.0" layoutY="146.0" promptText="Start Date" />
+      <JFXDatePicker fx:id="txtEndDate" layoutX="1166.0" layoutY="146.0" promptText="End Date" />
+      <JFXButton fx:id="btnFind" layoutX="1498.0" layoutY="144.0" onAction="#btnFind_OnAction" prefHeight="33.0" prefWidth="110.0" style="-fx-background-color: pink;" text="Find" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="15.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

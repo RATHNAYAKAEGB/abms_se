@@ -71,7 +71,7 @@ public class FixVariableController<T> {
         btnDelete.setDisable(true);
         btnUpdate.setDisable(true);
         setWorkerGroups();
-        setPayVId ();
+        setPayVId();
         tblFixVariable.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("svID"));
         tblFixVariable.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("name"));
         tblFixVariable.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("nomalRate"));
@@ -79,7 +79,6 @@ public class FixVariableController<T> {
         tblFixVariable.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("bonuseReate"));
         tblFixVariable.getColumns().get(6).setCellValueFactory(new PropertyValueFactory<>("description"));
         tblFixVariable.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("catName"));
-
 
 
         tblFixVariable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<PaymentVariableDTO>() {
@@ -92,13 +91,13 @@ public class FixVariableController<T> {
                 btnDelete.setDisable(false);
                 btnUpdate.setDisable(false);
                 txtDescription.setText(c.getDescription());
-                txtBonus.setText(c.getBonuseReate()+"");
+                txtBonus.setText(c.getBonuseReate() + "");
                 txtFixId.setText(c.getSvID());
                 txtGroupName.setText(c.getCatName());
                 CmbGroupNumber.setValue(c.getWorkerCateNo());
                 txtName.setText(c.getName());
-                txtNomalRate.setText(c.getNomalRate()+"");
-                txtOtRate.setText(c.getOtReate()+"");
+                txtNomalRate.setText(c.getNomalRate() + "");
+                txtOtRate.setText(c.getOtReate() + "");
 
             }
         });
@@ -116,15 +115,17 @@ public class FixVariableController<T> {
     @FXML
     private void CmbGroupNumber_OnAction(ActionEvent actionEvent) {
 
-        if(null==CmbGroupNumber.getValue()){return;}
+        if (null == CmbGroupNumber.getValue()) {
+            return;
+        }
 
         String groupId = CmbGroupNumber.getValue().toString();
         for (WorkerCategoryDTO c : categoryDTOList) {
             if (c.getCat_Id().equals(groupId)) {
 
-                if(c.getSalaryType().equals("Fix")){
+                if (c.getSalaryType().equals("Fix")) {
                     txtNomalRate.setPromptText("Basic Salary (Rs.)");
-                }else {
+                } else {
                     txtNomalRate.setPromptText("Nomal Rate For Hour (Rs.)");
                 }
                 txtGroupName.setText(c.getCat_Name());
@@ -173,18 +174,18 @@ public class FixVariableController<T> {
         }
 
 
-        if(!ValidationNumbers.isFloat(txtNomalRate.getText().trim())){
+        if (!ValidationNumbers.isFloat(txtNomalRate.getText().trim())) {
             new Alert(Alert.AlertType.ERROR, " Nomal Rate Should be Number !", ButtonType.OK).showAndWait();
             txtNomalRate.requestFocus();
             return;
         }
 
-        if(!ValidationNumbers.isFloat(txtOtRate.getText().trim())){
+        if (!ValidationNumbers.isFloat(txtOtRate.getText().trim())) {
             new Alert(Alert.AlertType.ERROR, " OT Rate Should be Number !", ButtonType.OK).showAndWait();
             txtOtRate.requestFocus();
             return;
         }
-        if(!ValidationNumbers.isFloat(txtBonus.getText().trim())){
+        if (!ValidationNumbers.isFloat(txtBonus.getText().trim())) {
             new Alert(Alert.AlertType.ERROR, " Bonus Rate Should be Number !", ButtonType.OK).showAndWait();
             txtBonus.requestFocus();
             return;
@@ -194,14 +195,14 @@ public class FixVariableController<T> {
         String name = txtName.getText().trim();
         String description = txtDescription.getText().trim();
         String catId = CmbGroupNumber.getValue().toString();
-        float nomalRate =Float.parseFloat(txtNomalRate.getText().trim());
-        float bonus =Float.parseFloat(txtBonus.getText().trim());
-        float otRate =Float.parseFloat(txtOtRate.getText().trim());
+        float nomalRate = Float.parseFloat(txtNomalRate.getText().trim());
+        float bonus = Float.parseFloat(txtBonus.getText().trim());
+        float otRate = Float.parseFloat(txtOtRate.getText().trim());
         WorkerCategoryDTO group = findWorkerGroups(catId);
 
 
         try {
-            paymentVariableManagementService.CreatePaymentVariable(new PaymentVariableDTO(fvId,name,nomalRate,otRate,bonus,description,group.getCat_Id(),group.getCat_Name()));
+            paymentVariableManagementService.CreatePaymentVariable(new PaymentVariableDTO(fvId, name, nomalRate, otRate, bonus, description, group.getCat_Id(), group.getCat_Name()));
 
             new Alert(Alert.AlertType.CONFIRMATION, " Payment Variable Created  !", ButtonType.OK).showAndWait();
         } catch (Exception e) {
@@ -253,18 +254,18 @@ public class FixVariableController<T> {
         }
 
 
-        if(!ValidationNumbers.isFloat(txtNomalRate.getText().trim())){
+        if (!ValidationNumbers.isFloat(txtNomalRate.getText().trim())) {
             new Alert(Alert.AlertType.ERROR, " Nomal Rate Should be Number !", ButtonType.OK).showAndWait();
             txtNomalRate.requestFocus();
             return;
         }
 
-        if(!ValidationNumbers.isFloat(txtOtRate.getText().trim())){
+        if (!ValidationNumbers.isFloat(txtOtRate.getText().trim())) {
             new Alert(Alert.AlertType.ERROR, " OT Rate Should be Number !", ButtonType.OK).showAndWait();
             txtOtRate.requestFocus();
             return;
         }
-        if(!ValidationNumbers.isFloat(txtBonus.getText().trim())){
+        if (!ValidationNumbers.isFloat(txtBonus.getText().trim())) {
             new Alert(Alert.AlertType.ERROR, " Bonus Rate Should be Number !", ButtonType.OK).showAndWait();
             txtBonus.requestFocus();
             return;
@@ -274,19 +275,19 @@ public class FixVariableController<T> {
         String name = txtName.getText().trim();
         String description = txtDescription.getText().trim();
         String catId = CmbGroupNumber.getValue().toString();
-        float nomalRate =Float.parseFloat(txtNomalRate.getText().trim());
-        float bonus =Float.parseFloat(txtBonus.getText().trim());
-        float otRate =Float.parseFloat(txtOtRate.getText().trim());
+        float nomalRate = Float.parseFloat(txtNomalRate.getText().trim());
+        float bonus = Float.parseFloat(txtBonus.getText().trim());
+        float otRate = Float.parseFloat(txtOtRate.getText().trim());
         WorkerCategoryDTO group = findWorkerGroups(catId);
 
 
         try {
-            paymentVariableManagementService.UpdatePaymentVariable(new PaymentVariableDTO(fvId,name,nomalRate,otRate,bonus,description,group.getCat_Id(),group.getCat_Name()));
+            paymentVariableManagementService.UpdatePaymentVariable(new PaymentVariableDTO(fvId, name, nomalRate, otRate, bonus, description, group.getCat_Id(), group.getCat_Name()));
 
             new Alert(Alert.AlertType.CONFIRMATION, " Payment Variable Updated  !", ButtonType.OK).showAndWait();
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR, " Error !", ButtonType.OK).showAndWait();
-
+            e.printStackTrace();
             logger.debug(e);
         }
 
@@ -346,11 +347,13 @@ public class FixVariableController<T> {
     }
 
     private void loadAllPaymentVariables() {
-
+        List<PaymentVariableDTO> temp = null;
         try {
-            List<PaymentVariableDTO> temp =  paymentVariableManagementService.findAllPaymentVariable();
-            if(null==temp){return;}
-            logger.info("................"+temp);
+            temp = paymentVariableManagementService.findAllPaymentVariable();
+            if (null == temp) {
+                return;
+            }
+            logger.info("................" + temp);
             tblFixVariable.setItems(FXCollections.observableArrayList(temp));
         } catch (Exception e) {
             e.printStackTrace();
@@ -358,7 +361,7 @@ public class FixVariableController<T> {
 
     }
 
-    private void setPayVId (){
+    private void setPayVId() {
         ObservableList<PaymentVariableDTO> items = tblFixVariable.getItems();
         int max = 0;
         if (items == null || items.size() == 0) {
