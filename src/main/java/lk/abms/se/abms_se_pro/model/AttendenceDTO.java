@@ -2,18 +2,20 @@ package lk.abms.se.abms_se_pro.model;
 
 import lk.abms.se.abms_se_pro.entity.SuperEntity;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
-public class AttendenceDTO implements SuperEntity {
+
+public class AttendenceDTO implements SuperDTO {
     private String siteNumber;
     private String siteName;
     private String supervisor;
     private String workerId;
     private String nic;
     private String workerName;
-    private Date atDate;
-    private Date inTime;
-    private Date outTime;
+    private LocalDate atDate;
+    private LocalTime inTime;
+    private LocalTime outTime;
     private boolean isPaid;
     private float advanceAmount;
     private float nofHours;
@@ -22,7 +24,7 @@ public class AttendenceDTO implements SuperEntity {
     public AttendenceDTO() {
     }
 
-    public AttendenceDTO(String siteNumber, String siteName, String supervisor, String workerId, String nic, String workerName, Date atDate, Date inTime, Date outTime, boolean isPaid, float advanceAmount, float nofHours) {
+    public AttendenceDTO(String siteNumber, String siteName, String supervisor, String workerId, String nic, String workerName, LocalDate atDate, LocalTime inTime, LocalTime outTime, boolean isPaid, float advanceAmount, float nofHours) {
         this.setSiteNumber(siteNumber);
         this.setSiteName(siteName);
         this.setSupervisor(supervisor);
@@ -86,27 +88,27 @@ public class AttendenceDTO implements SuperEntity {
         this.workerName = workerName;
     }
 
-    public Date getAtDate() {
+    public LocalDate getAtDate() {
         return atDate;
     }
 
-    public void setAtDate(Date atDate) {
+    public void setAtDate(LocalDate atDate) {
         this.atDate = atDate;
     }
 
-    public Date getInTime() {
+    public LocalTime getInTime() {
         return inTime;
     }
 
-    public void setInTime(Date inTime) {
+    public void setInTime(LocalTime inTime) {
         this.inTime = inTime;
     }
 
-    public Date getOutTime() {
+    public LocalTime getOutTime() {
         return outTime;
     }
 
-    public void setOutTime(Date outTime) {
+    public void setOutTime(LocalTime outTime) {
         this.outTime = outTime;
     }
 

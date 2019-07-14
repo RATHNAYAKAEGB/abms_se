@@ -24,6 +24,9 @@ public class ConverterDTO_ENTITY {
             Site c = (Site) entity;
             String isActive =(c.isActive())? "IsActive" :"InActive";
             return (T) new SiteDTO(c.getSiteId(),c.getRegDate(),c.getSitName(),c.getAddress(),isActive,c.getWorkerID().getWorkerId(),c.getWorkerID().getFullName(),c.getWorkerID().getMobile());
+        }else if (entity instanceof Attendence){
+            Attendence c = (Attendence) entity;
+            return (T) new AttendenceDTO(c.getSiteId().getSiteId(),c.getSiteId().getSitName(),c.getSiteId().getWorkerID().getFullName(),c.getWorkerId().getWorkerId(),c.getWorkerId().getNic(),c.getWorkerId().getFullName(),DateForMatter.getLocalDate(c.getaDate()),c.getInTime(),c.getOutTime(),c.isPaid(),c.getAdvanceAmount(),c.getNofHours());
         }
 
         else {
@@ -47,6 +50,9 @@ public class ConverterDTO_ENTITY {
             SiteDTO c = (SiteDTO) dto;
             boolean isActive =(c.getIsActive().equals("IsActive"))? true:false;
             return (T) new Site(c.getSiteId(),c.getRegDate(),c.getSitName(),c.getAddress(),isActive,null);
+        }else if(dto instanceof AttendenceDTO){
+            AttendenceDTO c = (AttendenceDTO) dto;
+            return (T) new Attendence(DateForMatter.getFortmatteredDate(c.getAtDate()),c.getInTime(),c.getOutTime(),c.getNofHours(),c.isPaid(),c.getAdvanceAmount(),null,null);
         } else {
             throw new RuntimeException("This DTO can't be converted to an entity");
         }

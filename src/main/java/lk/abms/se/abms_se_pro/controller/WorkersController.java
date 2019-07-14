@@ -135,11 +135,12 @@ public class WorkersController<T> {
                 txtFirstName.setText(c.getFirstName());
                 txtFullName.setText(c.getFullName());
                 cmbWorkerCategory.setValue(c.getCat_Id());
-                LocalDate date = c.getRegDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate date = LocalDate.parse(c.getRegDate().toString());
                 txtDate.setValue(date);
                 txtPhone.setText(c.getMobile());
                 txtWorkerID.setText(c.getWorkerId());
                 img_PP.setImage(new Image(new ByteArrayInputStream(c.getImg())));//Byte Array to Image View
+                txtWorkerID.setText(c.getWorkerId());
 
             }
         });

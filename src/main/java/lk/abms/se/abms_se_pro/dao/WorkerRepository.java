@@ -8,5 +8,6 @@ import java.util.Optional;
 
 @Repository
 public interface WorkerRepository extends JpaRepository<Worker,String> {
-    Worker findAllByWorkerId(String id);
+    Worker findByWorkerId(String id);
+    Worker findByNic(String nic);
 }

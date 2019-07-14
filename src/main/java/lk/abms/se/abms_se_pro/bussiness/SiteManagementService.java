@@ -37,7 +37,7 @@ public class SiteManagementService {
 
     public void createSite(SiteDTO dto) throws Exception {
         Site entity = ConverterDTO_ENTITY.getEntity(dto);
-        entity.setWorkerID(workerRepository.findAllByWorkerId(dto.getSupId()));
+        entity.setWorkerID(workerRepository.findByWorkerId(dto.getSupId()));
         siteRepository.save(entity);
 
         siteSupervisorHistoryRepository.save(new SiteSupervisorHistory(dto.getRegDate(),null,dto.getSupId(),dto.getSupName(),dto.getSiteId(),dto.getSitName(),true));
@@ -68,13 +68,12 @@ public class SiteManagementService {
         s.setSiteId(dto.getSiteId());
         s.setActive(isActive);
         s.setAddress(dto.getAddress());
-        s.setWorkerID(workerRepository.findAllByWorkerId(dto.getSupId()));
+        s.setWorkerID(workerRepository.findByWorkerId(dto.getSupId()));
 
 
     }
 
     public List<SiteDTO> findAllSite() throws Exception {
-        System.out.println("Lala "+siteRepository.findAll());
         return ConverterDTO_ENTITY.getDTOList(siteRepository.findAll());
     }
 
@@ -82,4 +81,7 @@ public class SiteManagementService {
         siteRepository.delete(siteRepository.findAllBySiteId(catId.trim()));
     }
 
+//    public List<SiteDTO> findAllActiveSite() throws Exception {
+//        return ConverterDTO_ENTITY.getDTOList(siteRepository.findAllByActiveIsTrue());
+//    }
 }

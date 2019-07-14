@@ -36,7 +36,7 @@ public class WorkerManageService {
     }
 
     public void updateWorker(WorkerDTO dto) throws Exception {
-        Worker w = workerRepository.findAllByWorkerId(dto.getWorkerId());
+        Worker w = workerRepository.findByWorkerId(dto.getWorkerId());
         w.setWc_Id(employeeCatagoryRepository.findByCatId(dto.getCat_Id()));
         w.setAddress(dto.getAddress());
         w.setFirstName(dto.getFirstName());
@@ -49,6 +49,14 @@ public class WorkerManageService {
     }
 
     public void deleteWorker(String catId) throws Exception {
-        workerRepository.delete(workerRepository.findAllByWorkerId(catId.trim()));
+        workerRepository.delete(workerRepository.findByWorkerId(catId.trim()));
+    }
+    public WorkerDTO findByNic(String nic)throws Exception{
+       return ConverterDTO_ENTITY.getDTO( workerRepository.findByNic(nic));
+    }
+
+    public WorkerDTO findByWorkerId(String id)throws Exception{
+        if(null==workerRepository.findByWorkerId(id)){return new WorkerDTO();}
+        return ConverterDTO_ENTITY.getDTO( workerRepository.findByWorkerId(id));
     }
 }

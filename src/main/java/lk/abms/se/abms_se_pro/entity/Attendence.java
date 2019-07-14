@@ -1,6 +1,8 @@
 package lk.abms.se.abms_se_pro.entity;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Entity
@@ -10,10 +12,10 @@ public class Attendence implements SuperEntity {
     private int aid;
     @Temporal(TemporalType.DATE)
     private Date aDate;
-    @Temporal(TemporalType.TIME)
-    private Date inTime;
-    @Temporal(TemporalType.TIME)
-    private Date outTime;
+//    @Temporal(TemporalType.TIME)
+    private LocalTime inTime;
+//    @Temporal(TemporalType.TIME)
+    private LocalTime outTime;
     private float nofHours;
     private boolean isPaid;
     private float advanceAmount;
@@ -27,7 +29,7 @@ public class Attendence implements SuperEntity {
     public Attendence() {
     }
 
-    public Attendence(Date aDate, Date inTime, Date outTime, float nofHours, boolean isPaid, float advanceAmount, Worker workerId, Site siteId) {
+    public Attendence(Date aDate, LocalTime inTime, LocalTime outTime, float nofHours, boolean isPaid, float advanceAmount, Worker workerId, Site siteId) {
         this.aDate = aDate;
         this.inTime = inTime;
         this.outTime = outTime;
@@ -54,19 +56,19 @@ public class Attendence implements SuperEntity {
         this.aDate = aDate;
     }
 
-    public Date getInTime() {
+    public LocalTime getInTime() {
         return inTime;
     }
 
-    public void setInTime(Date inTime) {
+    public void setInTime(LocalTime inTime) {
         this.inTime = inTime;
     }
 
-    public Date getOutTime() {
+    public LocalTime getOutTime() {
         return outTime;
     }
 
-    public void setOutTime(Date outTime) {
+    public void setOutTime(LocalTime outTime) {
         this.outTime = outTime;
     }
 
