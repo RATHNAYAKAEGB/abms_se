@@ -144,6 +144,15 @@ public class MainController {
     }
 
     @FXML
-    private void img_Expenditure_OnClicked(MouseEvent mouseEvent) {
+    private void img_Expenditure_OnClicked(MouseEvent mouseEvent) throws IOException {
+        Parent root = FXMLLoader.load(this.getClass().getResource("/view/Expenditure.fxml"));
+        Scene subScene = new Scene(root);
+        Stage primaryStage = (Stage) img_ConstructionSite.getScene().getWindow();
+        primaryStage.setScene(subScene);
+        primaryStage.centerOnScreen();
+        TranslateTransition tt = new TranslateTransition(Duration.millis(350), subScene.getRoot());
+        tt.setFromX(-subScene.getWidth());
+        tt.setToX(0);
+        tt.play();
     }
 }

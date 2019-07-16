@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="816.0" prefWidth="1500.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.abms.se.abms_se_pro.controller.SiteMonthlyAdvanceContorller">
    <children>
       <Label alignment="CENTER" layoutX="187.0" layoutY="34.0" prefHeight="62.0" prefWidth="1001.0" text="Manage Sites Advance Payment">
@@ -51,7 +50,7 @@
          </font>
       </JFXButton>
       <JFXDatePicker fx:id="txtIssueDate" layoutX="62.0" layoutY="584.0" prefHeight="26.0" prefWidth="349.0" promptText="Issue Date" />
-      <JFXTextField fx:id="txtApId" labelFloat="true" layoutX="54.0" layoutY="281.0" prefHeight="26.0" prefWidth="349.0" promptText="PaymentId" />
+      <JFXTextField fx:id="txtApId" editable="false" labelFloat="true" layoutX="54.0" layoutY="281.0" prefHeight="26.0" prefWidth="349.0" promptText="PaymentId" />
       <JFXComboBox fx:id="cmbPaymentType" labelFloat="true" layoutX="60.0" layoutY="331.0" onAction="#cmbPaymentType_OnAction" prefHeight="28.0" prefWidth="340.0" promptText="Payent Type" />
       <JFXTextField fx:id="txtcheckNumber" labelFloat="true" layoutX="56.0" layoutY="386.0" onAction="#CheckNumber" prefHeight="26.0" prefWidth="349.0" promptText="Check Number" />
       <TableView fx:id="tblAdvancePayment" layoutX="469.0" layoutY="163.0" prefHeight="618.0" prefWidth="988.0">

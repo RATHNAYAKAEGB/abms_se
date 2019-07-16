@@ -27,6 +27,10 @@ public class ConverterDTO_ENTITY {
         }else if (entity instanceof Attendence){
             Attendence c = (Attendence) entity;
             return (T) new AttendenceDTO(c.getSiteId().getSiteId(),c.getSiteId().getSitName(),c.getSiteId().getWorkerID().getFullName(),c.getWorkerId().getWorkerId(),c.getWorkerId().getNic(),c.getWorkerId().getFullName(),DateForMatter.getLocalDate(c.getaDate()),c.getInTime(),c.getOutTime(),c.isPaid(),c.getAdvanceAmount(),c.getNofHours());
+        }else if (entity instanceof SiteAdvances){
+            SiteAdvances c = (SiteAdvances) entity;
+            System.out.println(entity);
+            return (T) new SiteAdvancesDTO(c.getPaymentId(),c.getPayamentType(),c.getCheckNumber(),c.getIssueDate(),c.getAmount(),c.getDescription(),c.getSite_Id().getSiteId(),c.getSite_Id().getSitName(),c.getSite_Id().getWorkerID().getFullName());
         }
 
         else {
@@ -53,6 +57,9 @@ public class ConverterDTO_ENTITY {
         }else if(dto instanceof AttendenceDTO){
             AttendenceDTO c = (AttendenceDTO) dto;
             return (T) new Attendence(DateForMatter.getFortmatteredDate(c.getAtDate()),c.getInTime(),c.getOutTime(),c.getNofHours(),c.isPaid(),c.getAdvanceAmount(),null,null);
+        }else if(dto instanceof SiteAdvancesDTO){
+            SiteAdvancesDTO c = (SiteAdvancesDTO) dto;
+            return (T) new SiteAdvances(c.getPaymentId(),c.getPayamentType(),c.getCheckNumber(),c.getIssueDate(),c.getAmount(),c.getDescription(),null);
         } else {
             throw new RuntimeException("This DTO can't be converted to an entity");
         }

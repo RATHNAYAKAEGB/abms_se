@@ -6,8 +6,7 @@ import java.util.Date;
 @Entity
 public class Site implements SuperEntity {
     @Id
-    private
-    String siteId;
+    private String siteId;
     @Temporal(TemporalType.DATE)
     private
     Date regDate;

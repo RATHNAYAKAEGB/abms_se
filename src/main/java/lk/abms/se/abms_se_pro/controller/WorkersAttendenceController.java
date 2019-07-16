@@ -350,6 +350,7 @@ public class WorkersAttendenceController<T> {
             }
             txtNic.setText(workerDTO.getNic());
             txtWorkerName.setText(workerDTO.getFullName());
+            if(null==workerDTO){return;}
             img_SuperVisor.setImage(new Image(new ByteArrayInputStream(workerDTO.getImg())));//Byte Array to Image View
             txtWorkerId.setText(workerDTO.getWorkerId());
         } catch (Exception e) {
@@ -428,6 +429,7 @@ public class WorkersAttendenceController<T> {
         txtOutTime.setValue(null);
         txtAdvancePayment.clear();
         btnInSert.setDisable(false);
+        tblAttendence.setItems(null);
     }
 
     @FXML
