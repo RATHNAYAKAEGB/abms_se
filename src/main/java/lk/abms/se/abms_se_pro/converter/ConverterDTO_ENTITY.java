@@ -29,8 +29,13 @@ public class ConverterDTO_ENTITY {
             return (T) new AttendenceDTO(c.getSiteId().getSiteId(),c.getSiteId().getSitName(),c.getSiteId().getWorkerID().getFullName(),c.getWorkerId().getWorkerId(),c.getWorkerId().getNic(),c.getWorkerId().getFullName(),DateForMatter.getLocalDate(c.getaDate()),c.getInTime(),c.getOutTime(),c.isPaid(),c.getAdvanceAmount(),c.getNofHours());
         }else if (entity instanceof SiteAdvances){
             SiteAdvances c = (SiteAdvances) entity;
-            System.out.println(entity);
             return (T) new SiteAdvancesDTO(c.getPaymentId(),c.getPayamentType(),c.getCheckNumber(),c.getIssueDate(),c.getAmount(),c.getDescription(),c.getSite_Id().getSiteId(),c.getSite_Id().getSitName(),c.getSite_Id().getWorkerID().getFullName());
+        }else if (entity instanceof Main_Account){
+            Main_Account c = (Main_Account) entity;
+            return (T) new Main_AccountDTO(c.getAt_Id(),c.getAccountName(),c.getDescription());
+        }else if (entity instanceof Sub_Account){
+            Sub_Account c = (Sub_Account) entity;
+            return (T) new Sub_AccountsDTO(c.getSubAccountId(),c.getName(),c.getDescription(),c.getMain_accountId().getAt_Id(),c.getMain_accountId().getAccountName());
         }
 
         else {
@@ -60,7 +65,14 @@ public class ConverterDTO_ENTITY {
         }else if(dto instanceof SiteAdvancesDTO){
             SiteAdvancesDTO c = (SiteAdvancesDTO) dto;
             return (T) new SiteAdvances(c.getPaymentId(),c.getPayamentType(),c.getCheckNumber(),c.getIssueDate(),c.getAmount(),c.getDescription(),null);
-        } else {
+        }else if (dto instanceof Main_AccountDTO){
+            Main_AccountDTO c = (Main_AccountDTO) dto;
+            return (T) new Main_Account(c.getAt_Id(),c.getAccountName(),c.getDescription());
+        }else if (dto instanceof Sub_AccountsDTO){
+            Sub_AccountsDTO c = (Sub_AccountsDTO) dto;
+            return (T) new Sub_Account(c.getSubAccountId(),c.getName(),c.getDescription(),null);
+        }
+        else {
             throw new RuntimeException("This DTO can't be converted to an entity");
         }
     }

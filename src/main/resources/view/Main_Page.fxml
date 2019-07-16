@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="979.0" prefWidth="1727.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.abms.se.abms_se_pro.controller.MainController">
    <children>
-      <ImageView fitHeight="288.0" fitWidth="634.0" layoutX="534.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="242.0" fitWidth="576.0" layoutX="534.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/abmslogo.png" />
          </image>
@@ -108,5 +108,15 @@
             <Font name="Algerian" size="22.0" />
          </font>
       </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="559.0" layoutY="450.0" prefHeight="44.0" prefWidth="226.0" text="Accounts Manager">
+         <font>
+            <Font name="Algerian" size="22.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="img_Accounts" fitHeight="173.0" fitWidth="200.0" layoutX="582.0" layoutY="280.0" onMouseClicked="#img_Accounts_OnAction" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/acc.jpg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
