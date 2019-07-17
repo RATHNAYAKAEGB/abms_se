@@ -20,6 +20,7 @@ import java.io.IOException;
 public class MainController {
 
 
+    public ImageView img_LaborPayemnt;
     @FXML
     private ImageView img_Accounts;
     @FXML
@@ -109,6 +110,13 @@ public class MainController {
         Parent root = FXMLLoader.load(this.getClass().getResource("/view/AccountTypes.fxml"));
         travalingView(root);
     }
+
+
+    public void img_LaborPayemnt_OnClicked(MouseEvent mouseEvent) throws IOException {
+        Parent root = FXMLLoader.load(this.getClass().getResource("/view/labor_Monthly_Payment.fxml"));
+        travalingView(root);
+    }
+
 
     private void travalingView(Parent root){
 

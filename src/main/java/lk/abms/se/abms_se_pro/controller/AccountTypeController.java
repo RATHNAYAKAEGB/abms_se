@@ -17,6 +17,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -29,11 +30,16 @@ import lk.abms.se.abms_se_pro.bussiness.WorkerManageService;
 import lk.abms.se.abms_se_pro.model.Main_AccountDTO;
 import lk.abms.se.abms_se_pro.model.SiteDTO;
 import lk.abms.se.abms_se_pro.model.Sub_AccountsDTO;
+import lk.abms.se.abms_se_pro.model.WorkerDTO;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AccountTypeController<T> {
+    @FXML
+    private JFXComboBox cmbSubTypes;
     @FXML
     private JFXTextField txtMAccountId;
     @FXML
@@ -68,13 +74,21 @@ public class AccountTypeController<T> {
     private MainAccountMangeService mainAccountMangeService = AbmsSeProApplication.ctx.getBean(MainAccountMangeService.class);
     private SubAccountManageService subAccountManageService = AbmsSeProApplication.ctx.getBean(SubAccountManageService.class);
 
-
+    List<Main_AccountDTO> mainAccountDTOList = new ArrayList<>();
 
     public void initialize() {
         loadAllMAccounts();
         loadAllSubAccounts();
         setMainAccoutnId();
         setSubAccoutnId();
+        setMainAccountNumbers();
+
+        List<String> list = new ArrayList<>();
+        list.add("CURRENT ACCOUNT");
+        list.add("NON CURRENT ACCOUNT");
+        list.add("Other");
+        cmbSubTypes.setItems(FXCollections.observableArrayList(list));
+
         btnUpdate.setDisable(true);
         btnSave.setDisable(false);
         btnSaveSub.setDisable(false);
@@ -87,6 +101,11 @@ public class AccountTypeController<T> {
         tblMainAccount.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Main_AccountDTO>() {
             @Override
             public void changed(ObservableValue<? extends Main_AccountDTO> observable, Main_AccountDTO oldValue, Main_AccountDTO c) {
+
+                if (c == null) {
+                    return;
+                }
+
 
                 txtMAccountId.setText(c.getAt_Id());
                 txtAccountName.setText(c.getAccountName());
@@ -102,15 +121,22 @@ public class AccountTypeController<T> {
         tblSubAccount.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("description"));
         tblSubAccount.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("main_accountId"));
         tblSubAccount.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("main_A_Name"));
+        tblSubAccount.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("currentOrNon"));
 
         tblSubAccount.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Sub_AccountsDTO>() {
             @Override
             public void changed(ObservableValue<? extends Sub_AccountsDTO> observable, Sub_AccountsDTO oldValue, Sub_AccountsDTO c) {
+
+                if (c == null) {
+                    return;
+                }
+
                 txtAccountName.setText(c.getMain_A_Name());
                 txtSubAid.setText(c.getSubAccountId());
                 txtSubDescription.setText(c.getDescription());
                 txtSubAName.setText(c.getName());
                 cmbAccountType.setValue(c.getMain_accountId());
+                cmbSubTypes.setValue(c.getCurrentOrNon());
                 btnSaveSub.setDisable(true);
                 btnUpdateSub.setDisable(false);
             }
@@ -119,9 +145,18 @@ public class AccountTypeController<T> {
     }
 
 
-
     @FXML
     private void cmbAccountType_OnAction(ActionEvent actionEvent) {
+
+        if(null==cmbAccountType.getValue().toString()){return;}
+        String groupId = cmbAccountType.getValue().toString();
+        for (Main_AccountDTO c : mainAccountDTOList) {
+            if (c.getAt_Id().equals(groupId)) {
+                txtMainAccountName.setText(c.getAccountName());
+
+            }
+        }
+
     }
 
     @FXML
@@ -132,19 +167,19 @@ public class AccountTypeController<T> {
             txtMAccountId.requestFocus();
             return;
         }
-        if (txtMainAccountName.getText().trim().isEmpty()) {
+        if (txtAccountName.getText().trim().isEmpty()) {
             new Alert(Alert.AlertType.ERROR, " Main Account Name Is Empty !", ButtonType.OK).showAndWait();
-            txtMainAccountName.requestFocus();
+            txtAccountName.requestFocus();
             return;
         }
 
-        if(tblMainAccount.getItems().size()>=5){
+        if (tblMainAccount.getItems().size() >= 5) {
             new Alert(Alert.AlertType.ERROR, "There Are 5 Main Type Account Only You Can't Create !", ButtonType.OK).showAndWait();
             return;
         }
 
-        String name=txtMainAccountName.getText().trim();
-        String accountId =txtMAccountId.getText().trim();
+        String name = txtAccountName.getText().trim();
+        String accountId = txtMAccountId.getText().trim();
         String description = txtDescription.getText().trim();
         Main_AccountDTO mainAccountDTO = new Main_AccountDTO(accountId, name, description);
 
@@ -171,14 +206,14 @@ public class AccountTypeController<T> {
             txtMAccountId.requestFocus();
             return;
         }
-        if (txtMainAccountName.getText().trim().isEmpty()) {
+        if (txtAccountName.getText().trim().isEmpty()) {
             new Alert(Alert.AlertType.ERROR, "Account Main Account Name Is Empty !", ButtonType.OK).showAndWait();
-            txtMainAccountName.requestFocus();
+            txtAccountName.requestFocus();
             return;
         }
 
-        String name=txtMainAccountName.getText().trim();
-        String accountId =txtMAccountId.getText().trim();
+        String name = txtAccountName.getText().trim();
+        String accountId = txtMAccountId.getText().trim();
         String description = txtDescription.getText().trim();
 
         Main_AccountDTO mainAccountDTO = new Main_AccountDTO(accountId, name, description);
@@ -216,14 +251,20 @@ public class AccountTypeController<T> {
             return;
         }
 
+        if (null == cmbSubTypes.getValue()) {
+            new Alert(Alert.AlertType.ERROR, " Select Select Current Or Non Current !", ButtonType.OK).showAndWait();
+            cmbAccountType.requestFocus();
+            return;
+        }
 
-        String name=txtSubAName.getText().trim();
-        String accountId =txtSubAid.getText().trim();
+        String name = txtSubAName.getText().trim();
+        String accountId = txtSubAid.getText().trim();
         String description = txtSubDescription.getText().trim();
         String mainAccoutType = cmbAccountType.getValue().toString();
-        String mainAName= txtAccountName.getText().trim();
+        String mainAName = txtMainAccountName.getText().trim();
+        String currntORnon = cmbSubTypes.getValue().toString();
 
-        Sub_AccountsDTO sub_accountsDTO = new Sub_AccountsDTO(accountId, name, description, accountId, mainAName);
+        Sub_AccountsDTO sub_accountsDTO = new Sub_AccountsDTO(accountId, name, description, accountId, mainAName, currntORnon);
 
         try {
             subAccountManageService.updateSubAccount(sub_accountsDTO);
@@ -234,7 +275,7 @@ public class AccountTypeController<T> {
             new Alert(Alert.AlertType.ERROR, " Error !", ButtonType.OK).showAndWait();
 
         }
-
+        reset2();
     }
 
     @FXML
@@ -257,13 +298,13 @@ public class AccountTypeController<T> {
         }
 
 
-        String name=txtSubAName.getText().trim();
-        String accountId =txtSubAid.getText().trim();
+        String name = txtSubAName.getText().trim();
+        String accountId = txtSubAid.getText().trim();
         String description = txtSubDescription.getText().trim();
-        String mainAccoutType = cmbAccountType.getValue().toString();
-        String mainAName= txtAccountName.getText().trim();
-
-        Sub_AccountsDTO sub_accountsDTO = new Sub_AccountsDTO(accountId, name, description, accountId, mainAName);
+        String mainAccoutType = cmbAccountType.getValue().toString().trim();
+        String mainAName = txtMainAccountName.getText().trim();
+        String currntORnon = cmbSubTypes.getValue().toString();
+        Sub_AccountsDTO sub_accountsDTO = new Sub_AccountsDTO(accountId, name, description, mainAccoutType, mainAName, currntORnon);
 
         try {
             subAccountManageService.saveSubAccount(sub_accountsDTO);
@@ -274,12 +315,13 @@ public class AccountTypeController<T> {
             new Alert(Alert.AlertType.ERROR, " Error !", ButtonType.OK).showAndWait();
 
         }
-
+        reset2();
 
     }
 
     @FXML
     private void img_Back_OnMosueClicked(MouseEvent mouseEvent) throws IOException {
+
         Parent root = FXMLLoader.load(this.getClass().getResource("/view/Main_Page.fxml"));
         Scene subScene = new Scene(root);
         Stage primaryStage = (Stage) btnSave.getScene().getWindow();
@@ -289,14 +331,16 @@ public class AccountTypeController<T> {
         tt.setFromX(-subScene.getWidth());
         tt.setToX(0);
         tt.play();
+
     }
 
 
-    private void setMainAccoutnId(){
+    private void setMainAccoutnId() {
+
         ObservableList<Main_AccountDTO> items = tblMainAccount.getItems();
         int max = 0;
         if (items == null || items.size() == 0) {
-            txtMAccountId.setText("MANO01" + 1);
+            txtMAccountId.setText("MANO01");
             return;
         }
         for (Main_AccountDTO c : items) {
@@ -305,17 +349,17 @@ public class AccountTypeController<T> {
             if (max < i) {
                 max = i;
             }
-            txtMAccountId.setText("MANO01" + (++max));
+            txtMAccountId.setText("MANO0" + (++max));
 
         }
     }
 
 
-    private void setSubAccoutnId(){
+    private void setSubAccoutnId() {
         ObservableList<Sub_AccountsDTO> items = tblSubAccount.getItems();
         int max = 0;
         if (items == null || items.size() == 0) {
-            txtMAccountId.setText("SANO01" + 1);
+            txtSubAid.setText("SANO01");
             return;
         }
         for (Sub_AccountsDTO c : items) {
@@ -324,7 +368,7 @@ public class AccountTypeController<T> {
             if (max < i) {
                 max = i;
             }
-            txtMAccountId.setText("SANO01" + (++max));
+            txtSubAid.setText("SANO0" + (++max));
 
         }
     }
@@ -333,6 +377,7 @@ public class AccountTypeController<T> {
 
         try {
             List<Main_AccountDTO> temp = mainAccountMangeService.findAllMainAccounts();
+            mainAccountDTOList = temp;
             if (null == temp) {
                 return;
             }
@@ -357,7 +402,7 @@ public class AccountTypeController<T> {
 
     }
 
-    private void reset1(){
+    private void reset1() {
         txtMAccountId.clear();
         txtDescription.clear();
         txtAccountName.clear();
@@ -368,7 +413,7 @@ public class AccountTypeController<T> {
 
     }
 
-    private void reset2(){
+    private void reset2() {
         txtSubDescription.clear();
         txtSubAid.clear();
         txtAccountName.clear();
@@ -376,7 +421,22 @@ public class AccountTypeController<T> {
         cmbAccountType.setValue(null);
         btnUpdateSub.setDisable(true);
         btnSaveSub.setDisable(false);
+        cmbSubTypes.setValue(null);
         loadAllSubAccounts();
         setSubAccoutnId();
+    }
+
+
+    public void setMainAccountNumbers() {
+        ArrayList<String> list = new ArrayList<>();
+        try {
+            for (Main_AccountDTO c : mainAccountDTOList) {
+
+                list.add(c.getAt_Id());
+            }
+            cmbAccountType.setItems(FXCollections.observableArrayList(list));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -14,17 +14,19 @@ public class Sub_Account implements SuperEntity {
     private String name;
     private String description;
     @ManyToOne
-    @JoinColumn(referencedColumnName = "at_Id", name = "at_Id")
+    @JoinColumn(referencedColumnName = "atId", name = "at_Id")
     private Main_Account main_accountId;
+    private String currentOrNon;
 
     public Sub_Account() {
     }
 
-    public Sub_Account(String subAccountId, String name, String description, Main_Account main_accountId) {
+    public Sub_Account(String subAccountId, String name, String description, Main_Account main_accountId, String currentOrNon) {
         this.setSubAccountId(subAccountId);
         this.setName(name);
         this.setDescription(description);
         this.setMain_accountId(main_accountId);
+        this.setCurrentOrNon(currentOrNon);
     }
 
 
@@ -60,6 +62,14 @@ public class Sub_Account implements SuperEntity {
         this.main_accountId = main_accountId;
     }
 
+    public String getCurrentOrNon() {
+        return currentOrNon;
+    }
+
+    public void setCurrentOrNon(String currentOrNon) {
+        this.currentOrNon = currentOrNon;
+    }
+
     @Override
     public String toString() {
         return "Sub_Account{" +
@@ -67,6 +77,7 @@ public class Sub_Account implements SuperEntity {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", main_accountId=" + main_accountId +
+                ", currentOrNon='" + currentOrNon + '\'' +
                 '}';
     }
 }

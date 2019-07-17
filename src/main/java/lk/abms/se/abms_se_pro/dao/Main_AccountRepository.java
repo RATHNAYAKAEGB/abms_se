@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface Main_AccountRepository extends JpaRepository<Main_Account,String> {
-    Main_Account findByAt_Id(String id);
+    Main_Account findByAtId(String id);
+    Main_Account findByAccountName(String name);
 }

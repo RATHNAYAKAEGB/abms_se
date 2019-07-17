@@ -22,7 +22,7 @@ public class SubAccountManageService {
 
     public void saveSubAccount(Sub_AccountsDTO dto)throws Exception {
         Sub_Account entity = ConverterDTO_ENTITY.getEntity(dto);
-        entity.setMain_accountId(main_accountRepository.findByAt_Id(dto.getSubAccountId()));
+        entity.setMain_accountId(main_accountRepository.findByAccountName(dto.getMain_A_Name()));
         sub_accountsRepository.save(entity);
     }
 
@@ -30,7 +30,7 @@ public class SubAccountManageService {
         Sub_Account subAccounts = sub_accountsRepository.findBySubAccountId(dto.getSubAccountId());
         subAccounts.setDescription(dto.getDescription());
         subAccounts.setName(dto.getName());
-        subAccounts.setMain_accountId(main_accountRepository.findByAt_Id(dto.getMain_accountId()));
+        subAccounts.setMain_accountId(main_accountRepository.findByAccountName(dto.getMain_A_Name()));
     }
 
     public Sub_AccountsDTO findSubAccount(String id)throws Exception {

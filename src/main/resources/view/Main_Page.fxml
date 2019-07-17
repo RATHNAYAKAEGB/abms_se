@@ -73,7 +73,7 @@
             <Font name="Algerian" size="22.0" />
          </font>
       </Label>
-      <ImageView fitHeight="173.0" fitWidth="173.0" layoutX="345.0" layoutY="745.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="img_LaborPayemnt" fitHeight="173.0" fitWidth="173.0" layoutX="345.0" layoutY="745.0" onMouseClicked="#img_LaborPayemnt_OnClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/payement.png" />
          </image>

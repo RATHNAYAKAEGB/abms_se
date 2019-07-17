@@ -5,9 +5,8 @@ import javax.persistence.*;
 @Entity
 public class Main_Account implements SuperEntity {
     @Id
-    private String at_Id;
+    private String atId;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true)
     private int ano;
     private String accountName;
     private String description;
@@ -16,18 +15,18 @@ public class Main_Account implements SuperEntity {
     }
 
     public Main_Account(String at_Id, String accountName, String description) {
-        this.setAt_Id(at_Id);
+        this.setAtId(at_Id);
         this.setAccountName(accountName);
         this.setDescription(description);
     }
 
 
-    public String getAt_Id() {
-        return at_Id;
+    public String getAtId() {
+        return atId;
     }
 
-    public void setAt_Id(String at_Id) {
-        this.at_Id = at_Id;
+    public void setAtId(String at_Id) {
+        this.atId = at_Id;
     }
 
     public String getAccountName() {
@@ -57,7 +56,7 @@ public class Main_Account implements SuperEntity {
     @Override
     public String toString() {
         return "Main_Account{" +
-                "at_Id='" + at_Id + '\'' +
+                "at_Id='" + atId + '\'' +
                 ", ano=" + ano +
                 ", accountName='" + accountName + '\'' +
                 ", description='" + description + '\'' +

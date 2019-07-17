@@ -8,16 +8,18 @@ public class Sub_AccountsDTO implements SuperDTO {
     private String description;
     private String  main_accountId;
     private String main_A_Name;
+    private String currentOrNon;
 
     public Sub_AccountsDTO() {
     }
 
-    public Sub_AccountsDTO(String subAccountId, String name, String description, String main_accountId, String main_A_Name) {
+    public Sub_AccountsDTO(String subAccountId, String name, String description, String main_accountId, String main_A_Name, String currentOrNon) {
         this.setSubAccountId(subAccountId);
         this.setName(name);
         this.setDescription(description);
         this.setMain_accountId(main_accountId);
         this.setMain_A_Name(main_A_Name);
+        this.setCurrentOrNon(currentOrNon);
     }
 
 
@@ -61,6 +63,14 @@ public class Sub_AccountsDTO implements SuperDTO {
         this.main_A_Name = main_A_Name;
     }
 
+    public String getCurrentOrNon() {
+        return currentOrNon;
+    }
+
+    public void setCurrentOrNon(String currentOrNon) {
+        this.currentOrNon = currentOrNon;
+    }
+
     @Override
     public String toString() {
         return "Sub_AccountsDTO{" +
@@ -69,6 +79,7 @@ public class Sub_AccountsDTO implements SuperDTO {
                 ", description='" + description + '\'' +
                 ", main_accountId='" + main_accountId + '\'' +
                 ", main_A_Name='" + main_A_Name + '\'' +
+                ", currentOrNon='" + currentOrNon + '\'' +
                 '}';
     }
 }

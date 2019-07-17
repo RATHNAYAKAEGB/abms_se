@@ -24,13 +24,13 @@ public class MainAccountMangeService {
     }
 
     public void updateMainAccount(Main_AccountDTO dto)throws Exception  {
-        Main_Account ma= main_accountRepository.findByAt_Id(dto.getAt_Id());
+        Main_Account ma= main_accountRepository.findByAtId(dto.getAt_Id());
         ma.setAccountName(dto.getAccountName());
         ma.setDescription(ma.getDescription());
     }
 
     public Main_AccountDTO findMainAccount(String id)throws Exception {
-        return ConverterDTO_ENTITY.getDTO(main_accountRepository.findByAt_Id(id));
+        return ConverterDTO_ENTITY.getDTO(main_accountRepository.findByAtId(id));
     }
 
     public List<Main_AccountDTO> findAllMainAccounts()throws Exception {
