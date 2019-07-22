@@ -37,6 +37,8 @@ import java.util.List;
 public class FixVariableController<T> {
 
     @FXML
+    private JFXTextField txtNomalHours;
+    @FXML
     private TableView<PaymentVariableDTO> tblFixVariable;
     @FXML
     private JFXTextField txtFixId;
@@ -79,6 +81,7 @@ public class FixVariableController<T> {
         tblFixVariable.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("bonuseReate"));
         tblFixVariable.getColumns().get(6).setCellValueFactory(new PropertyValueFactory<>("description"));
         tblFixVariable.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("catName"));
+        tblFixVariable.getColumns().get(7).setCellValueFactory(new PropertyValueFactory<>("nomalHours"));
 
 
         tblFixVariable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<PaymentVariableDTO>() {
@@ -98,6 +101,7 @@ public class FixVariableController<T> {
                 txtName.setText(c.getName());
                 txtNomalRate.setText(c.getNomalRate() + "");
                 txtOtRate.setText(c.getOtReate() + "");
+                txtNomalHours.setText(c.getNomalHours()+"");
 
             }
         });
@@ -167,6 +171,12 @@ public class FixVariableController<T> {
             txtOtRate.requestFocus();
             return;
         }
+        if (txtNomalHours.getText().trim().isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, " Enter Nomal Hours !", ButtonType.OK).showAndWait();
+            txtNomalHours.requestFocus();
+            return;
+        }
+
         if (txtBonus.getText().trim().isEmpty()) {
             new Alert(Alert.AlertType.ERROR, " Bonuse Rate Is Empty !", ButtonType.OK).showAndWait();
             txtOtRate.requestFocus();
@@ -191,6 +201,14 @@ public class FixVariableController<T> {
             return;
         }
 
+        if (!ValidationNumbers.isInt(txtNomalHours.getText().trim())) {
+            new Alert(Alert.AlertType.ERROR, " Nomal Rate Should Be Number !", ButtonType.OK).showAndWait();
+            txtNomalHours.requestFocus();
+            return;
+        }
+
+
+
         String fvId = txtFixId.getText().trim();
         String name = txtName.getText().trim();
         String description = txtDescription.getText().trim();
@@ -199,10 +217,11 @@ public class FixVariableController<T> {
         float bonus = Float.parseFloat(txtBonus.getText().trim());
         float otRate = Float.parseFloat(txtOtRate.getText().trim());
         WorkerCategoryDTO group = findWorkerGroups(catId);
+        int nomalHours =Integer.parseInt(txtNomalHours.getText().trim());
 
 
         try {
-            paymentVariableManagementService.CreatePaymentVariable(new PaymentVariableDTO(fvId, name, nomalRate, otRate, bonus, description, group.getCat_Id(), group.getCat_Name()));
+            paymentVariableManagementService.CreatePaymentVariable(new PaymentVariableDTO(fvId, name, nomalRate, otRate, bonus, description, group.getCat_Id(), group.getCat_Name(),nomalHours));
 
             new Alert(Alert.AlertType.CONFIRMATION, " Payment Variable Created  !", ButtonType.OK).showAndWait();
         } catch (Exception e) {
@@ -247,6 +266,13 @@ public class FixVariableController<T> {
             txtOtRate.requestFocus();
             return;
         }
+
+        if (txtNomalHours.getText().trim().isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, " Enter Nomal Hours !", ButtonType.OK).showAndWait();
+            txtNomalHours.requestFocus();
+            return;
+        }
+
         if (txtBonus.getText().trim().isEmpty()) {
             new Alert(Alert.AlertType.ERROR, " Bonuse Rate Is Empty !", ButtonType.OK).showAndWait();
             txtOtRate.requestFocus();
@@ -271,6 +297,12 @@ public class FixVariableController<T> {
             return;
         }
 
+        if (!ValidationNumbers.isInt(txtNomalHours.getText().trim())) {
+            new Alert(Alert.AlertType.ERROR, " Nomal Rate Should Be Number !", ButtonType.OK).showAndWait();
+            txtNomalHours.requestFocus();
+            return;
+        }
+
         String fvId = txtFixId.getText().trim();
         String name = txtName.getText().trim();
         String description = txtDescription.getText().trim();
@@ -279,10 +311,10 @@ public class FixVariableController<T> {
         float bonus = Float.parseFloat(txtBonus.getText().trim());
         float otRate = Float.parseFloat(txtOtRate.getText().trim());
         WorkerCategoryDTO group = findWorkerGroups(catId);
-
+        int nomalHours =Integer.parseInt(txtNomalHours.getText().trim());
 
         try {
-            paymentVariableManagementService.UpdatePaymentVariable(new PaymentVariableDTO(fvId, name, nomalRate, otRate, bonus, description, group.getCat_Id(), group.getCat_Name()));
+            paymentVariableManagementService.UpdatePaymentVariable(new PaymentVariableDTO(fvId, name, nomalRate, otRate, bonus, description, group.getCat_Id(), group.getCat_Name(),nomalHours));
 
             new Alert(Alert.AlertType.CONFIRMATION, " Payment Variable Updated  !", ButtonType.OK).showAndWait();
         } catch (Exception e) {
@@ -392,6 +424,7 @@ public class FixVariableController<T> {
         btnDelete.setDisable(true);
         btnUpdate.setDisable(true);
         btnSave.setDisable(false);
+        txtNomalHours.clear();
         txtNomalRate.setPromptText("Nomal Rate For Hour (Rs .)");
         loadAllPaymentVariables();
         setPayVId();

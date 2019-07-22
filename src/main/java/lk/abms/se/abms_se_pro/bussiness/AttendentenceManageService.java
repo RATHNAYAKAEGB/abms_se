@@ -72,4 +72,9 @@ public class AttendentenceManageService {
         attendenceRepository.delete(attendenceRepository.findAllByWorkerIdAndADate(catId,s));
     }
 
+    public void updateIsPaid(String workerId)throws Exception{
+        Attendence attendence = attendenceRepository.findAllByWorkerId(workerId);
+        attendence.setPaid(true);
+    }
+
 }

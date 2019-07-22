@@ -41,7 +41,7 @@ public class PaymentVariableManagementService {
         pv.setName(dto.getName());
         pv.setBonuseReate(dto.getBonuseReate());
         pv.setNomalRate(dto.getNomalRate());
-        pv.setOtReate(pv.getOtReate());
+        pv.setOtReate(dto.getOtReate());
         pv.setDescription(dto.getDescription());
     }
 

@@ -12,11 +12,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="826.0" prefWidth="1371.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.abms.se.abms_se_pro.controller.FixVariableController">
+<AnchorPane prefHeight="826.0" prefWidth="1450.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.abms.se.abms_se_pro.controller.FixVariableController">
    <children>
-      <Pane layoutX="497.0" layoutY="83.0" prefHeight="723.0" prefWidth="850.0" style="-fx-background-color: #FFFFE0;">
+      <Pane layoutX="478.0" layoutY="67.0" prefHeight="723.0" prefWidth="944.0" style="-fx-background-color: #FFFFE0;">
          <children>
-            <TableView fx:id="tblFixVariable" layoutX="16.0" layoutY="16.0" prefHeight="691.0" prefWidth="825.0">
+            <TableView fx:id="tblFixVariable" layoutX="16.0" layoutY="21.0" prefHeight="691.0" prefWidth="926.0">
               <columns>
                 <TableColumn prefWidth="85.0" text="Salary V ID" />
                 <TableColumn prefWidth="66.0" text="Name" />
@@ -25,23 +25,25 @@
                   <TableColumn prefWidth="117.0" text="OT Hours Rate" />
                   <TableColumn prefWidth="146.0" text="Bonus Hours Rate" />
                   <TableColumn prefWidth="117.0" text="Description" />
+                  <TableColumn prefWidth="101.0" text="Nomal Hours" />
               </columns>
             </TableView>
          </children>
       </Pane>
-      <JFXTextField fx:id="txtFixId" labelFloat="true" layoutX="27.0" layoutY="241.0" prefHeight="31.0" prefWidth="431.0" promptText="Salary Varibale Id" />
-      <JFXTextField fx:id="txtName" labelFloat="true" layoutX="25.0" layoutY="296.0" prefHeight="31.0" prefWidth="431.0" promptText="Name" />
-      <JFXTextField fx:id="txtNomalRate" labelFloat="true" layoutX="25.0" layoutY="474.0" prefHeight="31.0" prefWidth="431.0" promptText="Nomal Rate (%)" />
+      <JFXTextField fx:id="txtFixId" labelFloat="true" layoutX="27.0" layoutY="220.0" prefHeight="31.0" prefWidth="431.0" promptText="Salary Varibale Id" />
+      <JFXTextField fx:id="txtName" labelFloat="true" layoutX="25.0" layoutY="273.0" prefHeight="31.0" prefWidth="431.0" promptText="Name" />
+      <JFXComboBox fx:id="CmbGroupNumber" labelFloat="true" layoutX="27.0" layoutY="326.0" onAction="#CmbGroupNumber_OnAction" prefHeight="31.0" prefWidth="431.0" promptText="Worker Group Number" />
+      <JFXTextField fx:id="txtGroupName" labelFloat="true" layoutX="27.0" layoutY="386.0" prefHeight="31.0" prefWidth="431.0" promptText="Worker Group Name" />
+      <JFXTextField fx:id="txtNomalHours" labelFloat="true" layoutX="25.0" layoutY="441.0" prefHeight="31.0" prefWidth="431.0" promptText="Nomal Hours" />
+      <JFXTextField fx:id="txtNomalRate" labelFloat="true" layoutX="25.0" layoutY="493.0" prefHeight="31.0" prefWidth="431.0" promptText="Nomal Rate (%)" />
+      <JFXTextField fx:id="txtOtRate" labelFloat="true" layoutX="25.0" layoutY="547.0" prefHeight="31.0" prefWidth="431.0" promptText="OT Rate (%)" />
+      <JFXTextField fx:id="txtBonus" labelFloat="true" layoutX="25.0" layoutY="601.0" prefHeight="31.0" prefWidth="431.0" promptText="Bonus Rate (%)" />
+      <JFXTextField fx:id="txtDescription" labelFloat="true" layoutX="27.0" layoutY="652.0" prefHeight="31.0" prefWidth="431.0" promptText="Description" />
       <Label alignment="CENTER" layoutX="155.0" layoutY="14.0" prefHeight="62.0" prefWidth="1001.0" text="Manage Employee Salary Variable">
          <font>
             <Font name="Arial Black" size="42.0" />
          </font>
       </Label>
-      <JFXComboBox fx:id="CmbGroupNumber" labelFloat="true" layoutX="27.0" layoutY="351.0" onAction="#CmbGroupNumber_OnAction" prefHeight="31.0" prefWidth="431.0" promptText="Worker Group Number" />
-      <JFXTextField fx:id="txtGroupName" labelFloat="true" layoutX="27.0" layoutY="413.0" prefHeight="31.0" prefWidth="431.0" promptText="Worker Group Name" />
-      <JFXTextField fx:id="txtOtRate" labelFloat="true" layoutX="25.0" layoutY="533.0" prefHeight="31.0" prefWidth="431.0" promptText="OT Rate (%)" />
-      <JFXTextField fx:id="txtBonus" labelFloat="true" layoutX="25.0" layoutY="586.0" prefHeight="31.0" prefWidth="431.0" promptText="Bonus Rate (%)" />
-      <JFXTextField fx:id="txtDescription" labelFloat="true" layoutX="27.0" layoutY="640.0" prefHeight="31.0" prefWidth="431.0" promptText="Description" />
       <JFXButton fx:id="btnSave" layoutX="78.0" layoutY="715.0" onAction="#btnSave_OnAction" prefHeight="31.0" prefWidth="92.0" style="-fx-background-color: green;" text="Save" textFill="#f7f7f7">
          <font>
             <Font name="Arial" size="19.0" />

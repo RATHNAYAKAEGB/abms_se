@@ -11,11 +11,11 @@ public class PaymentVariableDTO implements SuperDTO {
     private String description;
     private String workerCateNo;
     private String catName;
-
+    private int nomalHours;
     public PaymentVariableDTO() {
     }
 
-    public PaymentVariableDTO(String svID, String name, float nomalRate, float otReate, float bonuseReate, String description, String workerCateNo, String catName) {
+    public PaymentVariableDTO(String svID, String name, float nomalRate, float otReate, float bonuseReate, String description, String workerCateNo, String catName, int nomalHours) {
         this.svID = svID;
         this.name = name;
         this.nomalRate = nomalRate;
@@ -24,6 +24,15 @@ public class PaymentVariableDTO implements SuperDTO {
         this.description = description;
         this.workerCateNo = workerCateNo;
         this.catName = catName;
+        this.nomalHours = nomalHours;
+    }
+
+    public int getNomalHours() {
+        return nomalHours;
+    }
+
+    public void setNomalHours(int nomalHours) {
+        this.nomalHours = nomalHours;
     }
 
     public String getSvID() {
@@ -101,6 +110,7 @@ public class PaymentVariableDTO implements SuperDTO {
                 ", description='" + description + '\'' +
                 ", workerCateNo='" + workerCateNo + '\'' +
                 ", catName='" + catName + '\'' +
+                ", nomalHours=" + nomalHours +
                 '}';
     }
 }

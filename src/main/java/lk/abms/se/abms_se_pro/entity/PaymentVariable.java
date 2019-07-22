@@ -16,19 +16,22 @@ public class PaymentVariable implements SuperEntity {
     @OneToOne
     @JoinColumn(referencedColumnName = "catId",name = "wCId")
     private WorkerCategory categoryId;
+    private int nomalHours;
 
     public PaymentVariable() {
     }
 
-    public PaymentVariable(String svID, String name, float nomalRate, float otReate, float bonuseReate, String description, WorkerCategory categoryId) {
-        this.svID = svID;
-        this.name = name;
-        this.nomalRate = nomalRate;
-        this.otReate = otReate;
-        this.bonuseReate = bonuseReate;
-        this.description = description;
-        this.categoryId = categoryId;
+    public PaymentVariable(String svID, String name, float nomalRate, float otReate, float bonuseReate, String description, WorkerCategory categoryId, int nomalHours) {
+        this.setSvID(svID);
+        this.setName(name);
+        this.setNomalRate(nomalRate);
+        this.setOtReate(otReate);
+        this.setBonuseReate(bonuseReate);
+        this.setDescription(description);
+        this.setCategoryId(categoryId);
+        this.setNomalHours(nomalHours);
     }
+
 
     public String getSvID() {
         return svID;
@@ -86,6 +89,14 @@ public class PaymentVariable implements SuperEntity {
         this.categoryId = categoryId;
     }
 
+    public int getNomalHours() {
+        return nomalHours;
+    }
+
+    public void setNomalHours(int nomalHours) {
+        this.nomalHours = nomalHours;
+    }
+
     @Override
     public String toString() {
         return "PaymentVariable{" +
@@ -96,6 +107,7 @@ public class PaymentVariable implements SuperEntity {
                 ", bonuseReate=" + bonuseReate +
                 ", description='" + description + '\'' +
                 ", categoryId=" + categoryId +
+                ", nomalHours=" + nomalHours +
                 '}';
     }
 }

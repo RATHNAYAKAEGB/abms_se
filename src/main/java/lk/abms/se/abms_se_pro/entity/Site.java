@@ -8,8 +8,7 @@ public class Site implements SuperEntity {
     @Id
     private String siteId;
     @Temporal(TemporalType.DATE)
-    private
-    Date regDate;
+    private Date regDate;
     private String sitName;
     private String address;
     private boolean isActive;

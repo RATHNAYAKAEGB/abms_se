@@ -20,6 +20,10 @@ public class Worker implements SuperEntity {
     private WorkerCategory wc_Id;
     @Temporal(TemporalType.DATE)
     private Date regDate;
+    private double openBlance;
+
+
+
     public Worker() {
     }
 
@@ -108,6 +112,15 @@ public class Worker implements SuperEntity {
         this.regDate = regDate;
     }
 
+
+    public double getOpenBlance() {
+        return openBlance;
+    }
+
+    public void setOpenBlance(double openBlance) {
+        this.openBlance = openBlance;
+    }
+
     @Override
     public String toString() {
         return "Worker{" +
@@ -120,6 +133,7 @@ public class Worker implements SuperEntity {
                 ", mobile='" + mobile + '\'' +
                 ", wc_Id=" + wc_Id +
                 ", regDate=" + regDate +
+                ", openBlance=" + openBlance +
                 '}';
     }
 }

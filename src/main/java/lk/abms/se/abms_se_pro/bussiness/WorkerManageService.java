@@ -59,4 +59,9 @@ public class WorkerManageService {
         if(null==workerRepository.findByWorkerId(id)){return new WorkerDTO();}
         return ConverterDTO_ENTITY.getDTO( workerRepository.findByWorkerId(id));
     }
+
+    public void payToWorker(String woker_Id,double openBalance){
+        Worker worker = workerRepository.findByWorkerId(woker_Id);
+        worker.setOpenBlance(openBalance);
+    }
 }

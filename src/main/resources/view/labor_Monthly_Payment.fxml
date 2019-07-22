@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="928.0" prefWidth="1730.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.abms.se.abms_se_pro.controller.LaborMonthlyPaymentController">
    <children>
       <Label alignment="CENTER" prefHeight="40.0" prefWidth="1738.0" style="-fx-background-color: black;" text="LABOR PAYMENT" textFill="WHITE">
@@ -25,69 +24,61 @@
             <Image url="@../img/back.png" />
          </image>
       </ImageView>
-      <JFXTextField labelFloat="true" layoutX="58.0" layoutY="188.0" prefHeight="31.0" prefWidth="205.0" promptText="Labor ID" />
-      <JFXDatePicker layoutX="290.0" layoutY="189.0" promptText="Start Date" />
-      <JFXDatePicker layoutX="521.0" layoutY="189.0" promptText="End Date" />
-      <JFXButton layoutX="763.0" layoutY="185.0" prefHeight="40.0" prefWidth="205.0" style="-fx-background-color: green;" text="Find For Labor" textFill="WHITE">
+      <JFXTextField fx:id="txtLaborIdFFL" labelFloat="true" layoutX="58.0" layoutY="188.0" prefHeight="31.0" prefWidth="205.0" promptText="Labor ID" />
+      <JFXDatePicker fx:id="txtStartDateFFL" layoutX="290.0" layoutY="189.0" promptText="Start Date" />
+      <JFXDatePicker fx:id="txtEndDateFFL" layoutX="521.0" layoutY="189.0" promptText="End Date" />
+      <JFXButton fx:id="btnFindForLabour" layoutX="763.0" layoutY="185.0" onAction="#btnFindForLabour_OnAction" prefHeight="40.0" prefWidth="205.0" style="-fx-background-color: green;" text="Find For Labor" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font>
       </JFXButton>
       <Separator layoutX="992.0" layoutY="50.0" orientation="VERTICAL" prefHeight="185.0" prefWidth="7.0" style="-fx-background-color: black;" />
-      <JFXDatePicker layoutX="1026.0" layoutY="194.0" promptText="Start Date" />
-      <JFXDatePicker layoutX="1276.0" layoutY="192.0" promptText="End Date" />
-      <JFXButton layoutX="1501.0" layoutY="189.0" prefHeight="40.0" prefWidth="193.0" style="-fx-background-color: green;" text="Find For All Labor " textFill="WHITE">
+      <JFXDatePicker fx:id="txtStartDateFFAL" layoutX="1026.0" layoutY="194.0" promptText="Start Date" />
+      <JFXDatePicker fx:id="txtEndDateFFAL" layoutX="1276.0" layoutY="192.0" promptText="End Date" />
+      <JFXButton fx:id="btnFind_For_All_Labor" layoutX="1501.0" layoutY="189.0" onAction="#btnFind_For_All_Labor_onAction" prefHeight="40.0" prefWidth="193.0" style="-fx-background-color: green;" text="Find For All Labor " textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font>
       </JFXButton>
-      <TableView layoutX="17.0" layoutY="243.0" prefHeight="606.0" prefWidth="1706.0">
+      <TableView fx:id="tblLaborPayment" layoutX="17.0" layoutY="243.0" prefHeight="606.0" prefWidth="1706.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="75.0" text="C1" />
-            <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="75.0" text="C1" />
-            <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="75.0" text="C1" />
-            <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="75.0" text="C1" />
-            <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="75.0" text="C1" />
-            <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="75.0" text="C1" />
-            <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="75.0" text="C1" />
-            <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="75.0" text="C1" />
-            <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="75.0" text="C1" />
-            <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="75.0" text="C1" />
-            <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn prefWidth="76.0" text="Labor_No" />
+          <TableColumn prefWidth="107.99996948242188" text="Worker Name" />
+            <TableColumn prefWidth="104.0" text="Site Name" />
+            <TableColumn prefWidth="102.0" text="Worked Day" />
+            <TableColumn prefWidth="60.0" text="In Time" />
+            <TableColumn prefWidth="79.0" text="Out Time" />
+            <TableColumn prefWidth="114.0" text="Worked Hours" />
+            <TableColumn prefWidth="91.0" text="Advance" />
+            <TableColumn prefWidth="101.0" text="Nomal Rate" />
+            <TableColumn prefWidth="120.0" text="OT Rate" />
+            <TableColumn prefWidth="209.0" text="NH Payment" />
+            <TableColumn prefWidth="159.0" text="OT Payment" />
+            <TableColumn prefWidth="210.0" text="Gross Pay" />
+            <TableColumn prefWidth="172.0" text="Net Pay" />
         </columns>
       </TableView>
-      <JFXButton layoutX="28.0" layoutY="857.0" prefHeight="40.0" prefWidth="173.0" style="-fx-background-color: green;" text="Pay" textFill="WHITE">
+      <JFXButton fx:id="btnPay" layoutX="28.0" layoutY="874.0" onAction="#btnPay_OnAction" prefHeight="40.0" prefWidth="173.0" style="-fx-background-color: green;" text="Pay" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="1592.0" layoutY="868.0" prefHeight="40.0" prefWidth="121.0" style="-fx-background-color: blue;" text="Crear" textFill="WHITE">
+      <JFXButton fx:id="btnClear" layoutX="1592.0" layoutY="868.0" onAction="#btnClear_OnAction" prefHeight="40.0" prefWidth="121.0" style="-fx-background-color: blue;" text="Crear" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font>
       </JFXButton>
-      <JFXDatePicker layoutX="1026.0" layoutY="78.0" promptText="Start Date" />
-      <JFXDatePicker layoutX="1276.0" layoutY="76.0" promptText="End Date" />
-      <JFXButton layoutX="1501.0" layoutY="74.0" prefHeight="40.0" prefWidth="193.0" style="-fx-background-color: green;" text="Find Histroy Of Month" textFill="WHITE">
+      <JFXDatePicker fx:id="txtStartDateAllFHOM" layoutX="1026.0" layoutY="78.0" promptText="Start Date" />
+      <JFXDatePicker fx:id="txtEndDateAllFHOM" layoutX="1276.0" layoutY="76.0" promptText="End Date" />
+      <JFXButton fx:id="btnFind_History_Of_Month" layoutX="1501.0" layoutY="74.0" onAction="#btnFind_History_Of_Month_OnAction" prefHeight="40.0" prefWidth="193.0" style="-fx-background-color: green;" text="Find Histroy Of Month" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font>
       </JFXButton>
-      <JFXTextField labelFloat="true" layoutX="64.0" layoutY="98.0" prefHeight="31.0" prefWidth="205.0" promptText="Labor ID" />
-      <JFXDatePicker layoutX="296.0" layoutY="97.0" promptText="Start Date" />
-      <JFXDatePicker layoutX="527.0" layoutY="97.0" promptText="End Date" />
-      <JFXButton layoutX="769.0" layoutY="93.0" prefHeight="40.0" prefWidth="193.0" style="-fx-background-color: green;" text="Find History Of Labor" textFill="WHITE">
+      <JFXTextField fx:id="txtFHOLaborId" labelFloat="true" layoutX="64.0" layoutY="98.0" prefHeight="31.0" prefWidth="205.0" promptText="Labor ID" />
+      <JFXDatePicker fx:id="txtStartDateFHOL" layoutX="296.0" layoutY="97.0" promptText="Start Date" />
+      <JFXDatePicker fx:id="txtEndDateFHOL" layoutX="527.0" layoutY="97.0" promptText="End Date" />
+      <JFXButton fx:id="btnFindHistoryOfLabour" layoutX="769.0" layoutY="93.0" onAction="#btnFindHistoryOfLabour_OnAction" prefHeight="40.0" prefWidth="193.0" style="-fx-background-color: green;" text="Find History Of Labor" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font>

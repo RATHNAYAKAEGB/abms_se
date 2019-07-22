@@ -15,7 +15,7 @@ public class ConverterDTO_ENTITY {
             return (T) new WorkerCategoryDTO(c.getCatId(), c.getCat_Name(), c.getSalaryType(),c.getDescription(),c.isACtive(),c.getCreatedBy());
         }else if (entity instanceof PaymentVariable){
             PaymentVariable c = (PaymentVariable) entity;
-            return (T) new PaymentVariableDTO(c.getSvID(), c.getName(), c.getNomalRate(),c.getOtReate(),c.getBonuseReate(),c.getDescription(),c.getCategoryId().getCatId(),c.getCategoryId().getCat_Name());
+            return (T) new PaymentVariableDTO(c.getSvID(), c.getName(), c.getNomalRate(),c.getOtReate(),c.getBonuseReate(),c.getDescription(),c.getCategoryId().getCatId(),c.getCategoryId().getCat_Name(),c.getNomalHours());
         }else if (entity instanceof Worker){
             Worker c = (Worker) entity;
             String wy =(c.getWc_Id().isACtive())? "Managerial" :"Non Managirial";
@@ -49,7 +49,7 @@ public class ConverterDTO_ENTITY {
             return (T) new WorkerCategory(c.getCat_Id(), c.getCat_Name(), c.getSalaryType(),c.getDescription(),c.isACtive(),c.getCreatedBy());
         }else if(dto instanceof PaymentVariableDTO){
             PaymentVariableDTO c = (PaymentVariableDTO) dto;
-            return (T) new PaymentVariable(c.getSvID(), c.getName(), c.getNomalRate(),c.getOtReate(),c.getBonuseReate(),c.getDescription(),null);
+            return (T) new PaymentVariable(c.getSvID(), c.getName(), c.getNomalRate(),c.getOtReate(),c.getBonuseReate(),c.getDescription(),null,c.getNomalHours());
 
         }else if(dto instanceof WorkerDTO){
             WorkerDTO c = (WorkerDTO) dto;
