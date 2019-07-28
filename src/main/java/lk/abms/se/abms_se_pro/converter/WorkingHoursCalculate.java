@@ -11,4 +11,10 @@ public class WorkingHoursCalculate {
         l=(l%60)/100;
         return Hours+l;
     }
+
+    public static int findNumOfMinist(LocalTime in,LocalTime out){
+        java.time.Duration diff = java.time.Duration.between(in, out);
+
+        return (int) diff.toMinutes();
+    }
 }

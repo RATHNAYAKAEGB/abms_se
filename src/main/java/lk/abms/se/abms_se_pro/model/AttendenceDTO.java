@@ -1,7 +1,5 @@
 package lk.abms.se.abms_se_pro.model;
 
-import lk.abms.se.abms_se_pro.entity.SuperEntity;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -19,26 +17,30 @@ public class AttendenceDTO implements SuperDTO {
     private boolean isPaid;
     private float advanceAmount;
     private float nofHours;
+    private int workedMinits;
+    private int duratioDays ;
+
 
 
     public AttendenceDTO() {
     }
 
-    public AttendenceDTO(String siteNumber, String siteName, String supervisor, String workerId, String nic, String workerName, LocalDate atDate, LocalTime inTime, LocalTime outTime, boolean isPaid, float advanceAmount, float nofHours) {
-        this.setSiteNumber(siteNumber);
-        this.setSiteName(siteName);
-        this.setSupervisor(supervisor);
-        this.setWorkerId(workerId);
-        this.setNic(nic);
-        this.setWorkerName(workerName);
-        this.setAtDate(atDate);
-        this.setInTime(inTime);
-        this.setOutTime(outTime);
-        this.setPaid(isPaid);
-        this.setAdvanceAmount(advanceAmount);
-        this.setNofHours(nofHours);
+    public AttendenceDTO(String siteNumber, String siteName, String supervisor, String workerId, String nic, String workerName, LocalDate atDate, LocalTime inTime, LocalTime outTime, boolean isPaid, float advanceAmount, float nofHours, int workedMinits, int duratioDays) {
+        this.siteNumber = siteNumber;
+        this.siteName = siteName;
+        this.supervisor = supervisor;
+        this.workerId = workerId;
+        this.nic = nic;
+        this.workerName = workerName;
+        this.atDate = atDate;
+        this.inTime = inTime;
+        this.outTime = outTime;
+        this.isPaid = isPaid;
+        this.advanceAmount = advanceAmount;
+        this.nofHours = nofHours;
+        this.workedMinits = workedMinits;
+        this.duratioDays = duratioDays;
     }
-
 
     public String getSiteNumber() {
         return siteNumber;
@@ -136,6 +138,23 @@ public class AttendenceDTO implements SuperDTO {
         this.nofHours = nofHours;
     }
 
+
+    public int getWorkedMinits() {
+        return workedMinits;
+    }
+
+    public void setWorkedMinits(int workedMinits) {
+        this.workedMinits = workedMinits;
+    }
+
+    public int getDuratioDays() {
+        return duratioDays;
+    }
+
+    public void setDuratioDays(int duratioDays) {
+        this.duratioDays = duratioDays;
+    }
+
     @Override
     public String toString() {
         return "AttendenceDTO{" +
@@ -151,6 +170,8 @@ public class AttendenceDTO implements SuperDTO {
                 ", isPaid=" + isPaid +
                 ", advanceAmount=" + advanceAmount +
                 ", nofHours=" + nofHours +
+                ", workedMinits=" + workedMinits +
+                ", duratioDays=" + duratioDays +
                 '}';
     }
 }

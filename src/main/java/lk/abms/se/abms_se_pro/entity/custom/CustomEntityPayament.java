@@ -21,11 +21,14 @@ public class CustomEntityPayament implements SuperEntity {
     private float OtRate;
     private float bonusRate;
     private String varibleListName;
+    private double openBlance;
+    private int workedMinits;
+
 
     public CustomEntityPayament() {
     }
 
-    public CustomEntityPayament(String worker_Id, String fullName, String catName, String siteName, Date atDate, LocalTime inTime, LocalTime outTime, float numberOfHours, float advanceAmmount, int nomalHours, float nomalHoursRate, float otRate, float bonusRate, String varibleListName) {
+    public CustomEntityPayament(String worker_Id, String fullName, String catName, String siteName, Date atDate, LocalTime inTime, LocalTime outTime, float numberOfHours, float advanceAmmount, int nomalHours, float nomalHoursRate, float otRate, float bonusRate, String varibleListName, double openBlance, int workedMinits) {
         this.worker_Id = worker_Id;
         this.fullName = fullName;
         this.catName = catName;
@@ -40,6 +43,42 @@ public class CustomEntityPayament implements SuperEntity {
         OtRate = otRate;
         this.bonusRate = bonusRate;
         this.varibleListName = varibleListName;
+        this.openBlance = openBlance;
+        this.workedMinits = workedMinits;
+    }
+
+    public CustomEntityPayament(String worker_Id, String fullName, String catName, String siteName, Date atDate, LocalTime inTime, LocalTime outTime, float numberOfHours, float advanceAmmount, int nomalHours, float nomalHoursRate, float otRate, float bonusRate, String varibleListName, double openBlance) {
+        this.worker_Id = worker_Id;
+        this.fullName = fullName;
+        this.catName = catName;
+        this.siteName = siteName;
+        this.atDate = atDate;
+        this.inTime = inTime;
+        this.outTime = outTime;
+        this.numberOfHours = numberOfHours;
+        this.advanceAmmount = advanceAmmount;
+        this.nomalHours = nomalHours;
+        this.nomalHoursRate = nomalHoursRate;
+        OtRate = otRate;
+        this.bonusRate = bonusRate;
+        this.varibleListName = varibleListName;
+        this.openBlance = openBlance;
+    }
+
+    public int getWorkedMinits() {
+        return workedMinits;
+    }
+
+    public void setWorkedMinits(int workedMinits) {
+        this.workedMinits = workedMinits;
+    }
+
+    public double getOpenBlance() {
+        return openBlance;
+    }
+
+    public void setOpenBlance(double openBlance) {
+        this.openBlance = openBlance;
     }
 
     public CustomEntityPayament(String worker_Id) {
@@ -175,6 +214,8 @@ public class CustomEntityPayament implements SuperEntity {
                 ", OtRate=" + OtRate +
                 ", bonusRate=" + bonusRate +
                 ", varibleListName='" + varibleListName + '\'' +
+                ", openBlance=" + openBlance +
+                ", workedMinits=" + workedMinits +
                 '}';
     }
 }

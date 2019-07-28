@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,12 +21,17 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import lk.abms.se.abms_se_pro.AbmsSeProApplication;
 import lk.abms.se.abms_se_pro.bussiness.LaborPayementManegeService;
+import lk.abms.se.abms_se_pro.bussiness.MainAccountMangeService;
 import lk.abms.se.abms_se_pro.bussiness.WorkerManageService;
+import lk.abms.se.abms_se_pro.bussiness.WorkerSalaryPaymetInfoService;
 import lk.abms.se.abms_se_pro.converter.DateForMatter;
+import lk.abms.se.abms_se_pro.entity.WorkerSalaryPaymetInfo;
 import lk.abms.se.abms_se_pro.model.CustomEntityPayamentDTO;
+import lk.abms.se.abms_se_pro.model.WorkerSalaryPaymetInfoDTO;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LaborMonthlyPaymentController <T>{
@@ -68,6 +74,8 @@ public class LaborMonthlyPaymentController <T>{
 
    private LaborPayementManegeService laborPayementManegeService =AbmsSeProApplication.ctx.getBean(LaborPayementManegeService .class);
 
+    private WorkerSalaryPaymetInfoService workerSalaryPaymetInfoService = AbmsSeProApplication.ctx.getBean(WorkerSalaryPaymetInfoService.class);
+
     public void initialize() {
 
         tblLaborPayment.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("worker_Id"));
@@ -83,6 +91,7 @@ public class LaborMonthlyPaymentController <T>{
         tblLaborPayment.getColumns().get(9).setCellValueFactory(new PropertyValueFactory<>("OtRate"));
         tblLaborPayment.getColumns().get(10).setCellValueFactory(new PropertyValueFactory<>("nolaHoursPayment"));
         tblLaborPayment.getColumns().get(11).setCellValueFactory(new PropertyValueFactory<>("otPayment"));
+//        tblLaborPayment.getColumns().get(12).setCellValueFactory(new PropertyValueFactory<>("openBlance"));
         tblLaborPayment.getColumns().get(12).setCellValueFactory(new PropertyValueFactory<>("grossPayment"));
         tblLaborPayment.getColumns().get(13).setCellValueFactory(new PropertyValueFactory<>("netPayment"));
 
@@ -166,6 +175,26 @@ public class LaborMonthlyPaymentController <T>{
 
     @FXML
     private void btnPay_OnAction(ActionEvent actionEvent) {
+
+        if(tblLaborPayment.getItems().size()>0){
+
+            List<CustomEntityPayamentDTO> items = tblLaborPayment.getItems();
+            List<WorkerSalaryPaymetInfoDTO> listDto = new ArrayList<>();
+
+            for (CustomEntityPayamentDTO c :items){
+                WorkerSalaryPaymetInfoDTO x = new WorkerSalaryPaymetInfoDTO(c.getNomalHoursRate(), c.getOtRate(), c.getNolaHoursPayment(), c.getOtPayment(), c.getOpenBlance(), c.getGrossPayment(), c.getNetPayment(), c.getWorker_Id(), c.getAtDate(), null);
+                listDto.add( new WorkerSalaryPaymetInfoDTO(c.getNomalHoursRate(),c.getOtRate(),c.getNolaHoursPayment(),c.getOtPayment(),0,c.getGrossPayment(),c.getNetPayment(),c.getWorker_Id(),c.getAtDate(),null));
+
+                System.out.println("ccccccc"+c);
+                System.out.println("xxxxxxxxxxx "+x);
+
+            }
+
+//            workerSalaryPaymetInfoService.save(listDto);
+            new Alert(Alert.AlertType.CONFIRMATION, "Payemt Successfully Recorded Now you can get Payment Details", ButtonType.OK).showAndWait();
+            tblLaborPayment.setItems(null);
+            tblLaborPayment.refresh();
+        }
     }
 
     @FXML

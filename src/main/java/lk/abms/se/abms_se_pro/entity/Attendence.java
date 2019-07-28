@@ -1,7 +1,6 @@
 package lk.abms.se.abms_se_pro.entity;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 
@@ -25,19 +24,23 @@ public class Attendence implements SuperEntity {
     @ManyToOne
     @JoinColumn(referencedColumnName = "siteId", name = "siteId")
     private Site siteId;
+    private int numberOfminits ;
+    private int duratioDays ;
 
     public Attendence() {
     }
 
-    public Attendence(Date aDate, LocalTime inTime, LocalTime outTime, float nofHours, boolean isPaid, float advanceAmount, Worker workerId, Site siteId) {
+    public Attendence(Date aDate, LocalTime inTime, LocalTime outTime, float nofHours, boolean isPaid, float advanceAmount, Worker workerId, Site siteId, int numberOfminits, int duratioDays) {
         this.aDate = aDate;
         this.inTime = inTime;
         this.outTime = outTime;
         this.nofHours = nofHours;
         this.isPaid = isPaid;
-        this.setAdvanceAmount(advanceAmount);
-        this.setWorkerId(workerId);
-        this.setSiteId(siteId);
+        this.advanceAmount = advanceAmount;
+        this.workerId = workerId;
+        this.siteId = siteId;
+        this.numberOfminits = numberOfminits;
+        this.duratioDays = duratioDays;
     }
 
     public int getAid() {
@@ -104,6 +107,32 @@ public class Attendence implements SuperEntity {
         this.siteId = siteId;
     }
 
+
+    public float getAdvanceAmount() {
+        return advanceAmount;
+    }
+
+    public void setAdvanceAmount(float advanceAmount) {
+        this.advanceAmount = advanceAmount;
+    }
+
+
+    public int getNumberOfminits() {
+        return numberOfminits;
+    }
+
+    public void setNumberOfminits(int numberOfminits) {
+        this.numberOfminits = numberOfminits;
+    }
+
+    public int getDuratioDays() {
+        return duratioDays;
+    }
+
+    public void setDuratioDays(int duratioDays) {
+        this.duratioDays = duratioDays;
+    }
+
     @Override
     public String toString() {
         return "Attendence{" +
@@ -113,17 +142,11 @@ public class Attendence implements SuperEntity {
                 ", outTime=" + outTime +
                 ", nofHours=" + nofHours +
                 ", isPaid=" + isPaid +
-                ", advanceAmount=" + getAdvanceAmount() +
-                ", workerId=" + getWorkerId() +
-                ", siteId=" + getSiteId() +
+                ", advanceAmount=" + advanceAmount +
+                ", workerId=" + workerId +
+                ", siteId=" + siteId +
+                ", numberOfminits=" + numberOfminits +
+                ", duratioDays=" + duratioDays +
                 '}';
-    }
-
-    public float getAdvanceAmount() {
-        return advanceAmount;
-    }
-
-    public void setAdvanceAmount(float advanceAmount) {
-        this.advanceAmount = advanceAmount;
     }
 }

@@ -26,7 +26,7 @@ public class ConverterDTO_ENTITY {
             return (T) new SiteDTO(c.getSiteId(),c.getRegDate(),c.getSitName(),c.getAddress(),isActive,c.getWorkerID().getWorkerId(),c.getWorkerID().getFullName(),c.getWorkerID().getMobile());
         }else if (entity instanceof Attendence){
             Attendence c = (Attendence) entity;
-            return (T) new AttendenceDTO(c.getSiteId().getSiteId(),c.getSiteId().getSitName(),c.getSiteId().getWorkerID().getFullName(),c.getWorkerId().getWorkerId(),c.getWorkerId().getNic(),c.getWorkerId().getFullName(),DateForMatter.getLocalDate(c.getaDate()),c.getInTime(),c.getOutTime(),c.isPaid(),c.getAdvanceAmount(),c.getNofHours());
+            return (T) new AttendenceDTO(c.getSiteId().getSiteId(),c.getSiteId().getSitName(),c.getSiteId().getWorkerID().getFullName(),c.getWorkerId().getWorkerId(),c.getWorkerId().getNic(),c.getWorkerId().getFullName(),DateForMatter.getLocalDate(c.getaDate()),c.getInTime(),c.getOutTime(),c.isPaid(),c.getAdvanceAmount(),c.getNofHours(),c.getNumberOfminits(),c.getDuratioDays());
         }else if (entity instanceof SiteAdvances){
             SiteAdvances c = (SiteAdvances) entity;
             return (T) new SiteAdvancesDTO(c.getPaymentId(),c.getPayamentType(),c.getCheckNumber(),c.getIssueDate(),c.getAmount(),c.getDescription(),c.getSite_Id().getSiteId(),c.getSite_Id().getSitName(),c.getSite_Id().getWorkerID().getFullName());
@@ -36,6 +36,9 @@ public class ConverterDTO_ENTITY {
         }else if (entity instanceof Sub_Account){
             Sub_Account c = (Sub_Account) entity;
             return (T) new Sub_AccountsDTO(c.getSubAccountId(),c.getName(),c.getDescription(),c.getMain_accountId().getAtId(),c.getMain_accountId().getAccountName(),c.getCurrentOrNon());
+        }else if (entity instanceof WorkerSalaryPaymetInfo){
+            WorkerSalaryPaymetInfo c = (WorkerSalaryPaymetInfo) entity;
+            return (T) new WorkerSalaryPaymetInfoDTO(c.getNomalRate(),c.getNomalRate(),c.getOtRate(),c.getNomalPayment(),c.getOtPayemt(),c.getOpenBlance(),c.getGrossPay(),c.getWorkerId(),c.getAtDate(),c.getAttendenceId());
         }
 
         else {
@@ -61,7 +64,7 @@ public class ConverterDTO_ENTITY {
             return (T) new Site(c.getSiteId(),c.getRegDate(),c.getSitName(),c.getAddress(),isActive,null);
         }else if(dto instanceof AttendenceDTO){
             AttendenceDTO c = (AttendenceDTO) dto;
-            return (T) new Attendence(DateForMatter.getFortmatteredDate(c.getAtDate()),c.getInTime(),c.getOutTime(),c.getNofHours(),c.isPaid(),c.getAdvanceAmount(),null,null);
+            return (T) new Attendence(DateForMatter.getFortmatteredDate(c.getAtDate()),c.getInTime(),c.getOutTime(),c.getNofHours(),c.isPaid(),c.getAdvanceAmount(),null,null,c.getWorkedMinits(),c.getDuratioDays());
         }else if(dto instanceof SiteAdvancesDTO){
             SiteAdvancesDTO c = (SiteAdvancesDTO) dto;
             return (T) new SiteAdvances(c.getPaymentId(),c.getPayamentType(),c.getCheckNumber(),c.getIssueDate(),c.getAmount(),c.getDescription(),null);
@@ -70,7 +73,14 @@ public class ConverterDTO_ENTITY {
             return (T) new Main_Account(c.getAt_Id(),c.getAccountName(),c.getDescription());
         }else if (dto instanceof Sub_AccountsDTO){
             Sub_AccountsDTO c = (Sub_AccountsDTO) dto;
-            return (T) new Sub_Account(c.getSubAccountId(),c.getName(),c.getDescription(),null,c.getCurrentOrNon()); }
+            return (T) new Sub_Account(c.getSubAccountId(),c.getName(),c.getDescription(),null,c.getCurrentOrNon());
+        }else if (dto instanceof Sub_AccountsDTO){
+            Sub_AccountsDTO c = (Sub_AccountsDTO) dto;
+            return (T) new Sub_Account(c.getSubAccountId(),c.getName(),c.getDescription(),null,c.getCurrentOrNon());
+        }else if (dto instanceof WorkerSalaryPaymetInfoDTO){
+            WorkerSalaryPaymetInfoDTO c = (WorkerSalaryPaymetInfoDTO) dto;
+            return (T) new WorkerSalaryPaymetInfo(c.getNomalRate(),c.getNomalRate(),c.getOtRate(),c.getNomalPayment(),c.getOtPayemt(),c.getOpenBlance(),c.getGrossPay(),c.getWorkerId(),c.getAtDate(),null);
+        }
         else {
             throw new RuntimeException("This DTO can't be converted to an entity");
         }

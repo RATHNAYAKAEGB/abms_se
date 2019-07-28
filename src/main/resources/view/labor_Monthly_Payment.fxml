@@ -52,10 +52,10 @@
             <TableColumn prefWidth="91.0" text="Advance" />
             <TableColumn prefWidth="101.0" text="Nomal Rate" />
             <TableColumn prefWidth="120.0" text="OT Rate" />
-            <TableColumn prefWidth="209.0" text="NH Payment" />
-            <TableColumn prefWidth="159.0" text="OT Payment" />
-            <TableColumn prefWidth="210.0" text="Gross Pay" />
-            <TableColumn prefWidth="172.0" text="Net Pay" />
+            <TableColumn prefWidth="170.0" text="NH Payment" />
+            <TableColumn prefWidth="196.0" text="OT Payment" />
+            <TableColumn prefWidth="204.0" text="Gross Pay" />
+            <TableColumn prefWidth="180.0" text="Net Pay" />
         </columns>
       </TableView>
       <JFXButton fx:id="btnPay" layoutX="28.0" layoutY="874.0" onAction="#btnPay_OnAction" prefHeight="40.0" prefWidth="173.0" style="-fx-background-color: green;" text="Pay" textFill="WHITE">

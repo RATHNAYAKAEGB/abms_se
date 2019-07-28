@@ -25,12 +25,12 @@ public class CustomEntityPayamentDTO implements SuperDTO {
     private double otPayment;
     private double grossPayment;
     private double netPayment;
-
+    private double openBlance;
 
     public CustomEntityPayamentDTO() {
     }
 
-    public CustomEntityPayamentDTO(String worker_Id, String fullName, String catName, String siteName, Date atDate, LocalTime inTime, LocalTime outTime, float numberOfHours, float advanceAmmount, int nomalHours, float nomalHoursRate, float otRate, float bonusRate, String varibleListName, double nolaHoursPayment, double otPayment, double grossPayment, double netPayment) {
+    public CustomEntityPayamentDTO(String worker_Id, String fullName, String catName, String siteName, Date atDate, LocalTime inTime, LocalTime outTime, float numberOfHours, float advanceAmmount, int nomalHours, float nomalHoursRate, float otRate, float bonusRate, String varibleListName, double nolaHoursPayment, double otPayment, double grossPayment, double netPayment, double openBlance) {
         this.worker_Id = worker_Id;
         this.fullName = fullName;
         this.catName = catName;
@@ -49,6 +49,7 @@ public class CustomEntityPayamentDTO implements SuperDTO {
         this.otPayment = otPayment;
         this.grossPayment = grossPayment;
         this.netPayment = netPayment;
+        this.openBlance = openBlance;
     }
 
     public String getWorker_Id() {
@@ -195,6 +196,14 @@ public class CustomEntityPayamentDTO implements SuperDTO {
         this.netPayment = netPayment;
     }
 
+    public double getOpenBlance() {
+        return openBlance;
+    }
+
+    public void setOpenBlance(double openBlance) {
+        this.openBlance = openBlance;
+    }
+
     @Override
     public String toString() {
         return "CustomEntityPayamentDTO{" +
@@ -216,6 +225,7 @@ public class CustomEntityPayamentDTO implements SuperDTO {
                 ", otPayment=" + otPayment +
                 ", grossPayment=" + grossPayment +
                 ", netPayment=" + netPayment +
+                ", openBlance=" + openBlance +
                 '}';
     }
 }

@@ -26,50 +26,33 @@ public class LaborPayementManegeService {
 
     public List<CustomEntityPayamentDTO> getAllAttendenceForMonth(LocalDate s, LocalDate e) {
         List<CustomEntityPayament> list = attendenceRepository.searchAllAttendece(DateForMatter.getFortmatteredDate(s), DateForMatter.getFortmatteredDate(e));
-        List<CustomEntityPayamentDTO> listItems = new ArrayList<>();
-        for (CustomEntityPayament c : list) {
-            double nomalHoursPayment = salaryCalculator.findNomalHoursPayment(c.getNomalHours(), c.getNumberOfHours(), c.getNomalHoursRate());
-            double workerOTPayment = salaryCalculator.findWorkerOTPayment(c.getInTime(), c.getOutTime(), c.getNomalHours(), c.getOtRate(), c.getNumberOfHours());
-            double gross = nomalHoursPayment + workerOTPayment;
-            listItems.add(new CustomEntityPayamentDTO(c.getWorker_Id(), c.getFullName(), c.getCatName(), c.getSiteName(), c.getAtDate(), c.getInTime(), c.getOutTime(), c.getNumberOfHours(), c.getAdvanceAmmount(), c.getNomalHours(), c.getNomalHoursRate(), c.getOtRate(), c.getBonusRate(), c.getVaribleListName(), nomalHoursPayment, workerOTPayment, gross, gross - c.getAdvanceAmmount()));
-        }
-        return listItems;
+        return getList(list);
     }
 
 
     public List<CustomEntityPayamentDTO> getAllAttendenceForWorkerId(LocalDate s, LocalDate e,String id) {
         List<CustomEntityPayament> list = attendenceRepository.searchAllAttendece(DateForMatter.getFortmatteredDate(s), DateForMatter.getFortmatteredDate(e),id);
-        List<CustomEntityPayamentDTO> listItems = new ArrayList<>();
-        for (CustomEntityPayament c : list) {
-            double nomalHoursPayment = salaryCalculator.findNomalHoursPayment(c.getNomalHours(), c.getNumberOfHours(), c.getNomalHoursRate());
-            double workerOTPayment = salaryCalculator.findWorkerOTPayment(c.getInTime(), c.getOutTime(), c.getNomalHours(), c.getOtRate(), c.getNumberOfHours());
-            double gross = nomalHoursPayment + workerOTPayment;
-            listItems.add(new CustomEntityPayamentDTO(c.getWorker_Id(), c.getFullName(), c.getCatName(), c.getSiteName(), c.getAtDate(), c.getInTime(), c.getOutTime(), c.getNumberOfHours(), c.getAdvanceAmmount(), c.getNomalHours(), c.getNomalHoursRate(), c.getOtRate(), c.getBonusRate(), c.getVaribleListName(), nomalHoursPayment, workerOTPayment, gross, gross - c.getAdvanceAmmount()));
-        }
-        return listItems;
+        return getList(list);
     }
 
     public List<CustomEntityPayamentDTO> getAllAttendenceForWorkerIdOld(LocalDate s, LocalDate e,String id) {
         List<CustomEntityPayament> list = attendenceRepository.searchAllAttendeceOld(DateForMatter.getFortmatteredDate(s), DateForMatter.getFortmatteredDate(e),id);
-        List<CustomEntityPayamentDTO> listItems = new ArrayList<>();
-        for (CustomEntityPayament c : list) {
-            double nomalHoursPayment = salaryCalculator.findNomalHoursPayment(c.getNomalHours(), c.getNumberOfHours(), c.getNomalHoursRate());
-            double workerOTPayment = salaryCalculator.findWorkerOTPayment(c.getInTime(), c.getOutTime(), c.getNomalHours(), c.getOtRate(), c.getNumberOfHours());
-            double gross = nomalHoursPayment + workerOTPayment;
-            listItems.add(new CustomEntityPayamentDTO(c.getWorker_Id(), c.getFullName(), c.getCatName(), c.getSiteName(), c.getAtDate(), c.getInTime(), c.getOutTime(), c.getNumberOfHours(), c.getAdvanceAmmount(), c.getNomalHours(), c.getNomalHoursRate(), c.getOtRate(), c.getBonusRate(), c.getVaribleListName(), nomalHoursPayment, workerOTPayment, gross, gross - c.getAdvanceAmmount()));
-        }
-        return listItems;
+        return getList(list);
     }
 
 
     public List<CustomEntityPayamentDTO> getAllAttendenceForMonthOLD(LocalDate s, LocalDate e) {
         List<CustomEntityPayament> list = attendenceRepository.searchAllAttendeceOld(DateForMatter.getFortmatteredDate(s), DateForMatter.getFortmatteredDate(e));
+        return getList(list);
+    }
+
+    private List<CustomEntityPayamentDTO> getList(List<CustomEntityPayament> list ){
         List<CustomEntityPayamentDTO> listItems = new ArrayList<>();
         for (CustomEntityPayament c : list) {
-            double nomalHoursPayment = salaryCalculator.findNomalHoursPayment(c.getNomalHours(), c.getNumberOfHours(), c.getNomalHoursRate());
-            double workerOTPayment = salaryCalculator.findWorkerOTPayment(c.getInTime(), c.getOutTime(), c.getNomalHours(), c.getOtRate(), c.getNumberOfHours());
+            double nomalHoursPayment = salaryCalculator.findNomalHoursPayment(c.getWorkedMinits(),c.getNomalHoursRate(),c.getNomalHours());
+            double workerOTPayment = salaryCalculator.findWorkerOTPayment(c.getWorkedMinits(),c.getOtRate(),c.getNomalHours());
             double gross = nomalHoursPayment + workerOTPayment;
-            listItems.add(new CustomEntityPayamentDTO(c.getWorker_Id(), c.getFullName(), c.getCatName(), c.getSiteName(), c.getAtDate(), c.getInTime(), c.getOutTime(), c.getNumberOfHours(), c.getAdvanceAmmount(), c.getNomalHours(), c.getNomalHoursRate(), c.getOtRate(), c.getBonusRate(), c.getVaribleListName(), nomalHoursPayment, workerOTPayment, gross, gross - c.getAdvanceAmmount()));
+            listItems.add(new CustomEntityPayamentDTO(c.getWorker_Id(), c.getFullName(), c.getCatName(), c.getSiteName(), c.getAtDate(), c.getInTime(), c.getOutTime(), c.getNumberOfHours(), c.getAdvanceAmmount(), c.getNomalHours(), c.getNomalHoursRate(), c.getOtRate(), c.getBonusRate(), c.getVaribleListName(), nomalHoursPayment, workerOTPayment, gross, gross - c.getAdvanceAmmount(),0));
         }
         return listItems;
     }

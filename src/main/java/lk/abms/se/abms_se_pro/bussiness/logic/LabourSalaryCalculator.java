@@ -8,38 +8,44 @@ import java.time.LocalTime;
 @Component
 public class LabourSalaryCalculator {
 
-    public double findNomalHoursPayment(int nomalHoursInMaster,Float workerNomalHours,double nomalHoursRate){
+    public double findNomalHoursPayment(int minits,double nomalHoursRate,int systemNomalHours){
 
-        double payAmout =0;
-        if(nomalHoursInMaster>=workerNomalHours){
-            return workerNomalHours*nomalHoursRate;
+        int hours =minits/60;
+        int remainMinits =minits%60;
+        double hoursPayment=0;
+        double mintsPayment =0;
+
+        if(hours<systemNomalHours){
+           hoursPayment =hours*nomalHoursRate;
+           mintsPayment =remainMinits* (nomalHoursRate/60);
+           return hoursPayment+mintsPayment;
         }
-        return nomalHoursInMaster*nomalHoursRate;
+
+        return systemNomalHours*nomalHoursRate;
+
     }
 
-    public double findWorkerOTPayment(LocalTime inTime,LocalTime outTime,int nomalHours,float  otRate,float workedHours){
+    public double findWorkerOTPayment(int minits,double otRate,int systemNomalHours){
 
-        if(workedHours<nomalHours){return 0;}
+        int hours =minits/60;
+        int remainMinits =minits%60;
+        int otHours=0;
+        double otHoursPayment=0;
+        double otMinitsPayment =0;
 
-        java.time.Duration diff = java.time.Duration.between(inTime, outTime);
-        int hours = (int) diff.toHours();
-        int minits = (int) diff.toMinutes();
-
-        double hoursPayment =0;
-        double minitsPayment=0;
-
-        if(0==hours){
-            return minits*(otRate/60);
+        if(hours<systemNomalHours){
+         return 0;
         }
-//        System.out.println("Hours: "+hours);
-//        System.out.println("Minits :"+minits);
-        hoursPayment=(hours-nomalHours)*otRate;
-        minitsPayment=((minits%60)*(otRate/60));
-//
-//        System.out.println("Hours Payment: "+hoursPayment);
-//        System.out.println("Minits payemt :"+minitsPayment);
+        if(hours==systemNomalHours && remainMinits>0){
+            return (int) remainMinits*(otRate/60);
+        }
 
-        return hoursPayment+minitsPayment;
+        otHours =hours-systemNomalHours;
+
+        otHoursPayment =otHours*otRate;
+       int mintsPayment = (int) (remainMinits*(otRate/60));
+
+        return (int) otHoursPayment+mintsPayment;
 
     }
 

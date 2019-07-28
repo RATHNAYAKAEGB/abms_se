@@ -44,6 +44,8 @@ import java.util.List;
 
 public class WorkersAttendenceController<T> {
     @FXML
+    private JFXTextField txtWorkedDuration;
+    @FXML
     private JFXButton btnClear;
     @FXML
     private JFXButton btnPrint;
@@ -95,7 +97,7 @@ public class WorkersAttendenceController<T> {
 
     public void initialize() {
         setSitNumbers();
-        btnRemove.setDisable(true);
+//        btnRemove.setDisable(true);
         tblAttendence.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("siteNumber"));
         tblAttendence.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("siteName"));
         tblAttendence.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("supervisor"));
@@ -107,6 +109,8 @@ public class WorkersAttendenceController<T> {
         tblAttendence.getColumns().get(8).setCellValueFactory(new PropertyValueFactory<>("outTime"));
         tblAttendence.getColumns().get(9).setCellValueFactory(new PropertyValueFactory<>("advanceAmount"));
         tblAttendence.getColumns().get(10).setCellValueFactory(new PropertyValueFactory<>("nofHours"));
+        tblAttendence.getColumns().get(11).setCellValueFactory(new PropertyValueFactory<>("workedMinits"));
+        tblAttendence.getColumns().get(12).setCellValueFactory(new PropertyValueFactory<>("duratioDays"));
 
         tblAttendence.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<AttendenceDTO>() {
             @Override
@@ -208,6 +212,19 @@ public class WorkersAttendenceController<T> {
             return;
         }
 
+
+        if (txtWorkedDuration.getText().trim().isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, " Worked Duration Is Empty !", ButtonType.OK).showAndWait();
+            txtWorkedDuration.requestFocus();
+            return;
+        }
+
+       if(! ValidationNumbers.isInt(txtWorkedDuration.getText().trim())){
+           new Alert(Alert.AlertType.ERROR, " Invalid Number !", ButtonType.OK).showAndWait();
+           txtWorkedDuration.requestFocus();
+           return;
+        }
+
         String sitName = txtSiteName.getText().trim();
         String sitId = cmbSiteNumber.getValue().toString();
         String supervisor = txtSupervisor.getText().trim();
@@ -218,8 +235,10 @@ public class WorkersAttendenceController<T> {
         LocalTime inTime = txtInTime.getValue();
         LocalTime outTime = txtOutTime.getValue();
         float numOfHours = WorkingHoursCalculate.findNumOfHours(inTime, outTime);
+        int dayDuration =Integer.parseInt(txtWorkedDuration.getText().trim());
+        int workedMinits =WorkingHoursCalculate.findNumOfMinist(inTime, outTime);
 
-        if(numOfHours<0){
+        if(numOfHours<0 && dayDuration==1){
             new Alert(Alert.AlertType.ERROR, " Working Hours Is Less Than Zero Please Check Hours He Worked  !", ButtonType.OK).showAndWait();
             txtOutTime.requestFocus();
             return;
@@ -231,8 +250,46 @@ public class WorkersAttendenceController<T> {
             return;
         }
 
+        if(txtOutTime.getValue().toString().equals("12:00")&& dayDuration==1){
+            int minits = WorkingHoursCalculate.findNumOfMinist(txtInTime.getValue(),LocalTime.parse("23:59"));
+            workedMinits=(minits+1);
+            numOfHours=(workedMinits/60)-1;
+        }
+
+        if(txtOutTime.getValue().isAfter(LocalTime.parse("13:00"))&&dayDuration==1){
+            numOfHours =(int)numOfHours;
+            workedMinits =workedMinits-60;
+            numOfHours=numOfHours-1;
+        }
+
+
+        if(dayDuration==2){
+
+            int minits = WorkingHoursCalculate.findNumOfMinist(txtInTime.getValue(),LocalTime.parse("23:59"));
+            workedMinits=(minits+1)-60;
+            numOfHours =(int)(minits+1)/60;
+
+            if(txtOutTime.getValue().isAfter(LocalTime.parse("01:00"))){
+                int nextDayMitsts = WorkingHoursCalculate.findNumOfMinist(LocalTime.parse("01:00"),txtOutTime.getValue());
+                workedMinits =workedMinits+nextDayMitsts;
+                numOfHours =(int) numOfHours+(nextDayMitsts/60);
+                numOfHours=(int)numOfHours-1;
+            }
+
+        }
+
+        if(txtOutTime.getValue().isBefore(LocalTime.parse("01:00"))&& txtOutTime.getValue().isAfter(LocalTime.parse("12:00"))){
+            new Alert(Alert.AlertType.ERROR, "Please Select 13:00 PM  Or AM ", ButtonType.OK).showAndWait();
+            txtOutTime.requestFocus();
+            return;
+        }
+
+
+
+
+
         float addvanceAmout = Float.parseFloat(txtAdvancePayment.getText().trim());
-        AttendenceDTO dto = new AttendenceDTO(sitId, sitName, supervisor, workerId, nic, workerName, atDate, inTime, outTime, false, addvanceAmout,numOfHours);
+        AttendenceDTO dto = new AttendenceDTO(sitId, sitName, supervisor, workerId, nic, workerName, atDate, inTime, outTime, false, addvanceAmout,numOfHours,workedMinits,dayDuration);
 
         if (btnAdd.getText().trim().equals("Update")) {
 
@@ -248,6 +305,7 @@ public class WorkersAttendenceController<T> {
 
         } else {
             ObservableList<AttendenceDTO> items = tblAttendence.getItems();
+            if(items==null){return;}
             for (AttendenceDTO d : items) {
                 if (d.getWorkerId().equals(txtWorkerId.getText().trim())&& d.getAtDate().equals(atDate)) {
                     new Alert(Alert.AlertType.ERROR, " Already Attendence for Selected Date Worker : "+d.getWorkerName(), ButtonType.OK).showAndWait();
@@ -263,7 +321,7 @@ public class WorkersAttendenceController<T> {
     @FXML
     private void btnRemove_onAction(ActionEvent actionEvent) {
 
-        if(!txtNic.getText().trim().isEmpty()&& !cmbSiteNumber.getValue().toString().isEmpty()){
+        if(!txtWorkerId.getText().trim().isEmpty()&& !cmbSiteNumber.getValue().toString().isEmpty()){
             ObservableList<AttendenceDTO> items = tblAttendence.getItems();
             for (AttendenceDTO d : items) {
                 if (d.getWorkerId().equals(txtEmpId.getText().trim())) {
@@ -401,14 +459,14 @@ public class WorkersAttendenceController<T> {
     }
 
     private void reSet1() {
-        txtSiteName.setText("");
-        txtSupervisor.clear();
+//        txtSiteName.setText("");
+//        txtSupervisor.clear();
         txtEmpId.clear();
         txtWorkerId.clear();
         txtWorkerName.clear();
         btnAdd.setText("Add");
         txtNic.clear();
-        cmbSiteNumber.setValue(null);
+//        cmbSiteNumber.setValue(null);
         txtWorkerId.setEditable(true);
     }
 

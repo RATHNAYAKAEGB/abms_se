@@ -16,8 +16,9 @@ public interface AttendenceRepository extends JpaRepository<Attendence,String> {
     List<Attendence> findAllByWorkerIdAndADateBetween(Worker worker, Date s, Date e);
     Attendence findAllByWorkerIdAndADate(String eId, Date s);
     Attendence findAllByWorkerId(String eId);
+    Attendence findByWorkerIdAndADate(Worker Id,Date date);
 
-    @Query("SELECT  new lk.abms.se.abms_se_pro.entity.custom.CustomEntityPayament (w.workerId,w.fullName,c.cat_Name,s.sitName,a.aDate,a.inTime,a.outTime,a.nofHours,a.advanceAmount,v.nomalHours,v.nomalRate,v.otReate,v.bonuseReate,v.name ) FROM  Attendence a " +
+    @Query("SELECT  new lk.abms.se.abms_se_pro.entity.custom.CustomEntityPayament (w.workerId,w.fullName,c.cat_Name,s.sitName,a.aDate,a.inTime,a.outTime,a.nofHours,a.advanceAmount,v.nomalHours,v.nomalRate,v.otReate,v.bonuseReate,v.name,w.openBlance,a.numberOfminits ) FROM  Attendence a " +
             " LEFT JOIN Worker as w on w.workerId =a.workerId" +
             " left join WorkerCategory as c on c.catId =w.wc_Id " +
             "left join PaymentVariable as v on v.categoryId =w.wc_Id " +
@@ -26,7 +27,7 @@ public interface AttendenceRepository extends JpaRepository<Attendence,String> {
     List<CustomEntityPayament> searchAllAttendece(Date s , Date e);
 
 
-    @Query("SELECT  new lk.abms.se.abms_se_pro.entity.custom.CustomEntityPayament (w.workerId,w.fullName,c.cat_Name,s.sitName,a.aDate,a.inTime,a.outTime,a.nofHours,a.advanceAmount,v.nomalHours,v.nomalRate,v.otReate,v.bonuseReate,v.name ) FROM  Attendence a " +
+    @Query("SELECT  new lk.abms.se.abms_se_pro.entity.custom.CustomEntityPayament (w.workerId,w.fullName,c.cat_Name,s.sitName,a.aDate,a.inTime,a.outTime,a.nofHours,a.advanceAmount,v.nomalHours,v.nomalRate,v.otReate,v.bonuseReate,v.name,w.openBlance,a.numberOfminits ) FROM  Attendence a " +
             " LEFT JOIN Worker as w on w.workerId =a.workerId" +
             " left join WorkerCategory as c on c.catId =w.wc_Id " +
             "left join PaymentVariable as v on v.categoryId =w.wc_Id " +
@@ -35,7 +36,7 @@ public interface AttendenceRepository extends JpaRepository<Attendence,String> {
     List<CustomEntityPayament> searchAllAttendece(Date s , Date e,String workerId);
 
 
-    @Query("SELECT  new lk.abms.se.abms_se_pro.entity.custom.CustomEntityPayament (w.workerId,w.fullName,c.cat_Name,s.sitName,a.aDate,a.inTime,a.outTime,a.nofHours,a.advanceAmount,v.nomalHours,v.nomalRate,v.otReate,v.bonuseReate,v.name ) FROM  Attendence a " +
+    @Query("SELECT  new lk.abms.se.abms_se_pro.entity.custom.CustomEntityPayament (w.workerId,w.fullName,c.cat_Name,s.sitName,a.aDate,a.inTime,a.outTime,a.nofHours,a.advanceAmount,v.nomalHours,v.nomalRate,v.otReate,v.bonuseReate,v.name,w.openBlance,a.numberOfminits ) FROM  Attendence a " +
             " LEFT JOIN Worker as w on w.workerId =a.workerId" +
             " left join WorkerCategory as c on c.catId =w.wc_Id " +
             "left join PaymentVariable as v on v.categoryId =w.wc_Id " +
@@ -44,7 +45,7 @@ public interface AttendenceRepository extends JpaRepository<Attendence,String> {
     List<CustomEntityPayament> searchAllAttendeceOld(Date s , Date e,String workerId);
 
 
-    @Query("SELECT  new lk.abms.se.abms_se_pro.entity.custom.CustomEntityPayament (w.workerId,w.fullName,c.cat_Name,s.sitName,a.aDate,a.inTime,a.outTime,a.nofHours,a.advanceAmount,v.nomalHours,v.nomalRate,v.otReate,v.bonuseReate,v.name ) FROM  Attendence a " +
+    @Query("SELECT  new lk.abms.se.abms_se_pro.entity.custom.CustomEntityPayament (w.workerId,w.fullName,c.cat_Name,s.sitName,a.aDate,a.inTime,a.outTime,a.nofHours,a.advanceAmount,v.nomalHours,v.nomalRate,v.otReate,v.bonuseReate,v.name,w.openBlance,a.numberOfminits ) FROM  Attendence a " +
             " LEFT JOIN Worker as w on w.workerId =a.workerId" +
             " left join WorkerCategory as c on c.catId =w.wc_Id " +
             "left join PaymentVariable as v on v.categoryId =w.wc_Id " +
